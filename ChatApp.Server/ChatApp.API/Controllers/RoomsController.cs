@@ -38,7 +38,7 @@ namespace ChatApp.API.Controllers
         /// Retrieves room details.
         /// </summary>
         /// <returns>A collection of all rooms.</returns>
-        [HttpGet("{id:guid}")]
+        [HttpGet("{id:guid}/details")]
         public IActionResult GetRoomDetails(Guid id)
         {
             var room = _roomManager.GetRoomDetails(id);
