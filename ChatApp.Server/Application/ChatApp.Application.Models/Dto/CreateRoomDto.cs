@@ -11,10 +11,5 @@ namespace ChatApp.Application.Models
         /// The given room name.
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// The given room type.
-        /// </summary>
-        public RoomType RoomType { get; set; }
     }
 }

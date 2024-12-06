@@ -8,17 +8,17 @@
         /// <summary>
         /// The message's unique identifier.
         /// </summary>
-        Guid Id { get; }
+        Guid? Id { get; }
 
         /// <summary>
         /// The identifier of the chat room where the message was sent.
         /// </summary>
-        Guid RoomId { get; }
+        Guid? RoomId { get; }
 
         /// <summary>
         /// The identifier of the user who sent the message.
         /// </summary>
-        Guid SenderId { get; }
+        Guid? SenderId { get; }
 
         /// <summary>
         /// The content of the message.
@@ -28,6 +28,6 @@
         /// <summary>
         /// The time the message was sent.
         /// </summary>
-        DateTime SentAt { get; }
+        DateTime? SentAt { get; }
     }
 }

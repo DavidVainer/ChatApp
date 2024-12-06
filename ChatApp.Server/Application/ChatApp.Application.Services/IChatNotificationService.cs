@@ -46,5 +46,14 @@ namespace ChatApp.Application.Services
         /// <param name="message">Sent message model.</param>
         /// <returns>A task representing asynchronus operation.</returns>
         Task NotifyMessageRecievedAsync(string roomId, IMessage message);
+
+        /// <summary>
+        /// Marks a message as seen by a user.
+        /// </summary>
+        /// <param name="roomId">Room unique identifier.</param>
+        /// <param name="messageId">Message unique identifier.</param>
+        /// <param name="userId">User unique identifier.</param>
+        /// <returns>A task representing asynchronus operation.</returns>
+        Task NotifyMessageSeenAsync(string roomId, string messageId, string userId);
     }
 }

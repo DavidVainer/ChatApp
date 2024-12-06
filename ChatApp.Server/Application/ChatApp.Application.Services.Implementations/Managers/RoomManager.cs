@@ -11,6 +11,7 @@ namespace ChatApp.Application.Services.Implementations
         private readonly IEntityRepository<Room> _roomRepository;
         private readonly IValueObjectRepository<RoomParticipant> _participantRepository;
         private readonly IEntityIdGenerator _entityIdGenerator;
+        private readonly IRoomDetailsBuilder _roomDetailsBuilder;
 
         /// <summary>
         /// Initializes a new instnace of <see cref="RoomManager"/> class.
@@ -18,12 +19,43 @@ namespace ChatApp.Application.Services.Implementations
         /// <param name="roomRepository">Room repository service.</param>
         /// <param name="participantRepository">Participant repository service.</param>
         /// <param name="entityIdGenerator">Entity id generator service.</param>
-        public RoomManager(IEntityRepository<Room> roomRepository, IValueObjectRepository<RoomParticipant> participantRepository, IEntityIdGenerator entityIdGenerator)
+        public RoomManager(
+            IEntityRepository<Room> roomRepository, 
+            IValueObjectRepository<RoomParticipant> participantRepository, 
+            IEntityIdGenerator entityIdGenerator,
+            IRoomDetailsBuilder roomDetailsBuilder)
         {
             _roomRepository = roomRepository ?? throw new ArgumentNullException(nameof(roomRepository));
             _participantRepository = participantRepository ?? throw new ArgumentNullException(nameof(participantRepository));
             _entityIdGenerator = entityIdGenerator ?? throw new ArgumentNullException(nameof(entityIdGenerator));
+            _roomDetailsBuilder = roomDetailsBuilder ?? throw new ArgumentNullException(nameof(roomDetailsBuilder));
+        }
 
+        /// <summary>
+        /// Retrieves all rooms.
+        /// </summary>
+        /// <returns>Collection of existing rooms.</returns>
+        public IEnumerable<IRoom> GetAllRooms()
+        {
+            var rooms = _roomRepository.GetAll();
+            return rooms;
+        }
+
+        /// <summary>
+        /// Retrieves the details of the specified room.
+        /// </summary>
+        /// <param name="roomId">Room unique identifier.</param>
+        /// <returns>Aggregated object contains room details.</returns>
+        public IRoomDetails GetRoomDetails(Guid roomId)
+        {
+            _roomDetailsBuilder.Initialize(roomId);
+            _roomDetailsBuilder.SetRoomProperties();
+            _roomDetailsBuilder.SetMessages();
+            _roomDetailsBuilder.SetParticipants();
+
+            var roomDetails = _roomDetailsBuilder.Build();
+
+            return roomDetails;
         }
 
         /// <summary>
@@ -37,7 +69,6 @@ namespace ChatApp.Application.Services.Implementations
             {
                 Id = _entityIdGenerator.Generate(),
                 Name = dto.Name,
-                RoomType = dto.RoomType,
                 CreatedAt = DateTime.UtcNow
             };
 
@@ -88,16 +119,6 @@ namespace ChatApp.Application.Services.Implementations
             var room = _roomRepository.GetByFilter(roomFilter).FirstOrDefault();
 
             _roomRepository.Delete(room);
-        }
-
-        /// <summary>
-        /// Retrieves all rooms that a specific user participates in.
-        /// </summary>
-        /// <param name="userId">The unique identifier of the user.</param>
-        /// <returns>A collection of rooms associated with the user.</returns>
-        public IEnumerable<IRoom> GetUserRooms(Guid userId)
-        {
-            throw new NotImplementedException();
         }
     }
 }

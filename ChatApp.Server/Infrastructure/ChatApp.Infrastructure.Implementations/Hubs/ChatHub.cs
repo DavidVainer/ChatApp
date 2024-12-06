@@ -43,7 +43,7 @@ namespace ChatApp.Infrastructure.Implementations
             _roomManager.AddParticipant(participantActionDto);
 
             await _chatNotificationService.AddToGroupAsync(Context.ConnectionId, roomId);
-            await _chatNotificationService.NotifyUserJoinedAsync(roomId, Context.ConnectionId);
+            await _chatNotificationService.NotifyUserJoinedAsync(roomId, userId);
         }
 
         /// <summary>
@@ -85,6 +85,26 @@ namespace ChatApp.Infrastructure.Implementations
             var messageModel = _messageManager.SendMessage(sendMessageDto);
 
             await _chatNotificationService.NotifyMessageRecievedAsync(roomId, messageModel);
+        }
+
+        /// <summary>
+        /// Marks a message as seen, updating the database and notifying the participants.
+        /// </summary>
+        /// <param name="roomId">The unique identifier of the room.</param>
+        /// <param name="userId">The unique identifier of the user.</param>
+        /// <param name="messageId">The unique identifier of the message.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
+        public async Task MarkMessageAsSeen(string roomId, string userId, string messageId)
+        {
+            var markMessageAsSeenDto = new MarkMessageAsSeenDto
+            {
+                MessageId = Guid.Parse(messageId),
+                UserId = Guid.Parse(userId)
+            };
+
+            _messageManager.MarkMessageAsSeen(markMessageAsSeenDto);
+
+            await _chatNotificationService.NotifyMessageSeenAsync(roomId, messageId, userId);
         }
     }
 

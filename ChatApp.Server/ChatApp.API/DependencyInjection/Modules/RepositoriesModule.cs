@@ -78,8 +78,8 @@ namespace ChatApp.API.DependencyInjection.Modules
                     TableName = "Rooms",
                     GetAllQuery = "SELECT * FROM Rooms",
                     InsertQuery = @"
-                        INSERT INTO Rooms (Id, Name, RoomType, CreatedAt)
-                        VALUES (@Id, @Name, @RoomType, @CreatedAt)",
+                        INSERT INTO Rooms (Id, Name, CreatedAt)
+                        VALUES (@Id, @Name, @CreatedAt)",
                     UpdateQuery = @"
                         UPDATE Rooms
                         SET Name = @Name

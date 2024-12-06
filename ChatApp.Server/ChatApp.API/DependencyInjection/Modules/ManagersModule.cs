@@ -52,6 +52,16 @@ namespace ChatApp.API.DependencyInjection.Modules
                 .RegisterType<BcryptPasswordService>()
                 .As<IPasswordService>()
                 .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<RoomDetailsBuilder>()
+                .As<IRoomDetailsBuilder>()
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<RoomParticipantDetailsBuilder>()
+                .As<IRoomParticipantDetailsBuilder>()
+                .InstancePerLifetimeScope();
         }
     }
 }

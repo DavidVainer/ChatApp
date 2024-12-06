@@ -8,17 +8,17 @@
         /// <summary>
         /// The message's unique identifier.
         /// </summary>
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
 
         /// <summary>
         /// The identifier of the chat room where the message was sent.
         /// </summary>
-        public Guid RoomId { get; set; }
+        public Guid? RoomId { get; set; }
 
         /// <summary>
         /// The identifier of the user who sent the message.
         /// </summary>
-        public Guid SenderId { get; set; }
+        public Guid? SenderId { get; set; }
 
         /// <summary>
         /// The content of the message.
@@ -28,6 +28,6 @@
         /// <summary>
         /// The time the message was sent.
         /// </summary>
-        public DateTime SentAt { get; set; }
+        public DateTime? SentAt { get; set; }
     }
 }

@@ -33,7 +33,6 @@ namespace ChatApp.Infrastructure.Implementations
 
             parameters.Add("Id", entity.Id);
             parameters.Add("Name", entity.Name);
-            parameters.Add("RoomType", entity.RoomType);
             parameters.Add("CreatedAt", entity.CreatedAt);
 
             return parameters;
