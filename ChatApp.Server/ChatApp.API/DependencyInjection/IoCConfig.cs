@@ -39,7 +39,8 @@ namespace ChatApp.API.DependencyInjection
 
             container
                 .RegisterModule(new RepositoriesModule(configuration))
-                .RegisterModule(new ManagersModule(configuration));
+                .RegisterModule(new ManagersModule(configuration))
+                .RegisterModule(new NotificationsModule(configuration));
         }
     }
 }
