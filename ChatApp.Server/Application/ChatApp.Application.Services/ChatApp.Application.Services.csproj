@@ -11,6 +11,7 @@
     <ProjectReference Include="..\..\Common\ChatApp.Common.Services\ChatApp.Common.Services.csproj" />
     <ProjectReference Include="..\..\Domain\ChatApp.Domain.Models\ChatApp.Domain.Models.csproj" />
     <ProjectReference Include="..\..\Domain\ChatApp.Domain.Services\ChatApp.Domain.Services.csproj" />
+    <ProjectReference Include="..\ChatApp.Application.Models\ChatApp.Application.Models.csproj" />
   </ItemGroup>
 
 </Project>
