@@ -38,7 +38,8 @@ namespace ChatApp.API.DependencyInjection
                 .InstancePerLifetimeScope();
 
             container
-                .RegisterModule(new RepositoriesModule(configuration));
+                .RegisterModule(new RepositoriesModule(configuration))
+                .RegisterModule(new ManagersModule(configuration));
         }
     }
 }
