@@ -19,5 +19,10 @@
         /// When a message is received in a chat room.
         /// </summary>
         ReceiveMessage,
+
+        /// <summary>
+        /// When a message is seen by a user.
+        /// </summary>
+        MessageSeen,
     }
 }

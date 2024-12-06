@@ -1,19 +1,19 @@
 ﻿namespace ChatApp.Domain.Models
 {
     /// <summary>
-    /// Represents a participant in a chat room, 
+    /// Aggregate object containing full room participant details.
     /// </summary>
-    public interface IRoomParticipant
+    public interface IRoomParticipantDetails
     {
-        /// <summary>
-        /// The identifier of the room the user is participating in.
-        /// </summary>
-        Guid? RoomId { get; }
-
         /// <summary>
         /// The identifier of the participating user.
         /// </summary>
         Guid? UserId { get; }
+
+        /// <summary>
+        /// Participating user's display name.
+        /// </summary>
+        string UserDisplayName { get; }
 
         /// <summary>
         /// The date when the user joined the room.

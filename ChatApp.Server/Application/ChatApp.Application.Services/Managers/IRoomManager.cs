@@ -9,6 +9,19 @@ namespace ChatApp.Application.Services
     public interface IRoomManager
     {
         /// <summary>
+        /// Retrieves all rooms.
+        /// </summary>
+        /// <returns>Collection of existing rooms.</returns>
+        IEnumerable<IRoom> GetAllRooms();
+
+        /// <summary>
+        /// Retrieves the details of the specified room.
+        /// </summary>
+        /// <param name="roomId">Room unique identifier.</param>
+        /// <returns>Aggregated object contains room details.</returns>
+        IRoomDetails GetRoomDetails(Guid roomId);
+
+        /// <summary>
         /// Creates a new room with the specified details.
         /// </summary>
         /// <param name="dto">Dto containing the room creation details.</param>
@@ -32,12 +45,5 @@ namespace ChatApp.Application.Services
         /// </summary>
         /// <param name="roomId">The unique identifier of the room to be deleted.</param>
         void DeleteRoom(Guid roomId);
-
-        /// <summary>
-        /// Retrieves all rooms that a specific user participates in.
-        /// </summary>
-        /// <param name="userId">The unique identifier of the user.</param>
-        /// <returns>A collection of rooms associated with the user.</returns>
-        IEnumerable<IRoom> GetUserRooms(Guid userId);
     }
 }

@@ -74,5 +74,17 @@ namespace ChatApp.Infrastructure.Implementations
         {
             await _hubContext.Clients.Group(roomId).SendAsync(ChatEvents.ReceiveMessage.ToString(), message);
         }
+
+        /// <summary>
+        /// Marks a message as seen by a user.
+        /// </summary>
+        /// <param name="roomId">Room unique identifier.</param>
+        /// <param name="messageId">Message unique identifier.</param>
+        /// <param name="userId">User unique identifier.</param>
+        /// <returns>A task representing asynchronus operation.</returns>
+        public async Task NotifyMessageSeenAsync(string roomId, string messageId, string userId)
+        {
+            await _hubContext.Clients.Group(roomId).SendAsync(ChatEvents.MessageSeen.ToString(), messageId, userId);
+        }
     }
 }

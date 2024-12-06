@@ -16,10 +16,22 @@ namespace ChatApp.Application.Services
         IUser CreateUser(CreateUserDto dto);
 
         /// <summary>
+        /// Retrieves all users.
+        /// </summary>
+        /// <returns>Collection of all users.</returns>
+        IEnumerable<IUser> GetAllUsers();
+
+        /// <summary>
         /// Retrieves a user by their unique identifier.
         /// </summary>
         /// <param name="userId">The unique identifier of the user to retrieve.</param>
         /// <returns>The found user.</returns>
         IUser? GetUserById(Guid userId);
+
+        /// <summary>
+        /// Deletes a user by their unique identifier.
+        /// </summary>
+        /// <param name="userId">The unique identifier of the user to delete.</param>
+        void DeleteUser(Guid userId);
     }
 }

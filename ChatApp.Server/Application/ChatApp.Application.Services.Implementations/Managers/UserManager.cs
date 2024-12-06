@@ -49,6 +49,16 @@ namespace ChatApp.Application.Services.Implementations
         }
 
         /// <summary>
+        /// Retrieves all users.
+        /// </summary>
+        /// <returns>Collection of all users.</returns>
+        public IEnumerable<IUser> GetAllUsers()
+        {
+            var users = _userRepository.GetAll();
+            return users;
+        }
+
+        /// <summary>
         /// Retrieves a user by their unique identifier.
         /// </summary>
         /// <param name="userId">The unique identifier of the user to retrieve.</param>
@@ -59,6 +69,18 @@ namespace ChatApp.Application.Services.Implementations
             var user = _userRepository.GetByFilter(userFilter).FirstOrDefault();
 
             return user;
+        }
+
+
+        /// <summary>
+        /// Deletes a user by their unique identifier.
+        /// </summary>
+        /// <param name="userId">The unique identifier of the user to delete.</param>
+        public void DeleteUser(Guid userId)
+        {
+            var user = new User { Id = userId };
+
+            _userRepository.Delete(user);
         }
     }
 }

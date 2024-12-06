@@ -16,13 +16,8 @@
         public string Name { get; set; }
 
         /// <summary>
-        /// The type of the room.
-        /// </summary>
-        public RoomType RoomType { get; set; }
-
-        /// <summary>
         /// The time when the room was created.
         /// </summary>
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
     }
 }

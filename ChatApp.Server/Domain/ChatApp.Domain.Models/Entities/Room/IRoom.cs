@@ -16,13 +16,8 @@
         string Name { get; }
 
         /// <summary>
-        /// The type of the room.
-        /// </summary>
-        RoomType RoomType { get; }
-
-        /// <summary>
         /// The time when the room was created.
         /// </summary>
-        DateTime CreatedAt { get; }
+        DateTime? CreatedAt { get; }
     }
 }
