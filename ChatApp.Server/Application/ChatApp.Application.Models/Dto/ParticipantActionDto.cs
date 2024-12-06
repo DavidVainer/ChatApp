@@ -1,9 +1,9 @@
 ﻿namespace ChatApp.Application.Models
 {
     /// <summary>
-    /// Data Transfer Object for adding a new participant to a room.
+    /// Data Transfer Object for room participant actions.
     /// </summary>
-    public class AddParticipantDto
+    public class ParticipantActionDto
     {
         /// <summary>
         /// The unique identifier of the room.

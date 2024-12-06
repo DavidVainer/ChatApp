@@ -50,7 +50,7 @@ namespace ChatApp.Application.Services.Implementations
         /// Adds a participant to the specified room.
         /// </summary>
         /// <param name="dto">Dto containing participant details.</param>
-        public void AddParticipant(AddParticipantDto dto)
+        public void AddParticipant(ParticipantActionDto dto)
         {
             var participant = new RoomParticipant
             {
@@ -66,7 +66,7 @@ namespace ChatApp.Application.Services.Implementations
         /// Removes a participant from the specified room.
         /// </summary>
         /// <param name="dto">Dto containing participant details and the room ID.</param>
-        public void RemoveParticipant(AddParticipantDto dto)
+        public void RemoveParticipant(ParticipantActionDto dto)
         {
             var participantFilter = new RoomParticipant
             {

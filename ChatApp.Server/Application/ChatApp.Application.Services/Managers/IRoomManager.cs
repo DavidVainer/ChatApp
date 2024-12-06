@@ -19,13 +19,13 @@ namespace ChatApp.Application.Services
         /// Adds a participant to the specified room.
         /// </summary>
         /// <param name="dto">Dto containing participant details.</param>
-        void AddParticipant(AddParticipantDto dto);
+        void AddParticipant(ParticipantActionDto dto);
 
         /// <summary>
         /// Removes a participant from the specified room.
         /// </summary>
         /// <param name="dto">Dto containing participant details and the room ID.</param>
-        void RemoveParticipant(AddParticipantDto dto);
+        void RemoveParticipant(ParticipantActionDto dto);
 
         /// <summary>
         /// Deletes the specified room.
