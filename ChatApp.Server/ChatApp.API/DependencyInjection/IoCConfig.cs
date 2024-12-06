@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using ChatApp.API.DependencyInjection.Modules;
 using ChatApp.Common.Services;
 using ChatApp.Infrastructure.Implementations;
 
@@ -35,6 +36,9 @@ namespace ChatApp.API.DependencyInjection
                 .RegisterType<AutofacStrategyResolver>()
                 .As<IStrategyResolver>()
                 .InstancePerLifetimeScope();
+
+            container
+                .RegisterModule(new RepositoriesModule(configuration));
         }
     }
 }
