@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>e7c60fd3-1af9-4a3c-a3dd-0894e63cf947</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DependencyInjection\Modules\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\ChatApp.Application.Models\ChatApp.Application.Models.csproj" />
+    <ProjectReference Include="..\Application\ChatApp.Application.Services.Implementations\ChatApp.Application.Services.Implementations.csproj" />
+    <ProjectReference Include="..\Application\ChatApp.Application.Services\ChatApp.Application.Services.csproj" />
+    <ProjectReference Include="..\Common\ChatApp.Common.Implementations\ChatApp.Common.Implementations.csproj" />
+    <ProjectReference Include="..\Common\ChatApp.Common.Models\ChatApp.Common.Models.csproj" />
+    <ProjectReference Include="..\Common\ChatApp.Common.Services\ChatApp.Common.Services.csproj" />
+    <ProjectReference Include="..\Domain\ChatApp.Domain.Models\ChatApp.Domain.Models.csproj" />
+    <ProjectReference Include="..\Domain\ChatApp.Domain.Services.Implementations\ChatApp.Domain.Services.Implementations.csproj" />
+    <ProjectReference Include="..\Domain\ChatApp.Domain.Services\ChatApp.Domain.Services.csproj" />
+    <ProjectReference Include="..\Infrastructure\ChatApp.Infrastructure.Implementations\ChatApp.Infrastructure.Implementations.csproj" />
+    <ProjectReference Include="..\Infrastructure\ChatApp.Infrastructure.Models\ChatApp.Infrastructure.Models.csproj" />
+    <ProjectReference Include="..\Infrastructure\ChatApp.Infrastructure.Services\ChatApp.Infrastructure.Services.csproj" />
+  </ItemGroup>
+
+</Project>

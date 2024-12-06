@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\ChatApp.Common.Models\ChatApp.Common.Models.csproj" />
+    <ProjectReference Include="..\..\Common\ChatApp.Common.Services\ChatApp.Common.Services.csproj" />
+    <ProjectReference Include="..\ChatApp.Domain.Models\ChatApp.Domain.Models.csproj" />
+  </ItemGroup>
+
+</Project>
