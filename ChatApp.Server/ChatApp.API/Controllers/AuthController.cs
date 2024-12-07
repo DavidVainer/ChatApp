@@ -12,14 +12,12 @@ namespace ChatApp.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly ILoginManager _loginManager;
+        private readonly ITokenService _tokenService;
 
-        /// <summary>
-        /// Initiates a new instance of the <see cref="AuthController"/> class.
-        /// </summary>
-        /// <param name="loginManager">Login manager service.</param>
-        public AuthController(ILoginManager loginManager)
+        public AuthController(ILoginManager loginManager, ITokenService tokenService)
         {
             _loginManager = loginManager ?? throw new ArgumentNullException(nameof(loginManager));
+            _tokenService = tokenService ?? throw new ArgumentNullException(nameof(tokenService));
         }
 
         /// <summary>
@@ -34,30 +32,22 @@ namespace ChatApp.API.Controllers
             {
                 var user = _loginManager.Login(dto);
 
-                return Ok(new {
-                    userId = user.Id,
+                if (user == null)
+                {
+                    return Unauthorized("Wrong email or password.");
+                }
+
+                var token = _tokenService.GenerateToken(user);
+
+                return Ok(new
+                {
+                    UserId = user.Id,
+                    Token = token
                 });
             }
-            catch (Exception ex)
+            catch (UnauthorizedAccessException ex)
             {
                 return Unauthorized(ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Log outs a user.
-        /// </summary>
-        /// <param name="userId">User unique identfier.</param>
-        [HttpPost("logout")]
-        public IActionResult Logout(Guid userId)
-        {
-            try
-            {
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
             }
         }
     }

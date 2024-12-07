@@ -1,10 +1,10 @@
 ﻿namespace ChatApp.Application.Services
 {
     /// <summary>
-    /// Defines data methods for domain value objects.
+    /// Defines CRUD operations inside a data source.
     /// </summary>
     /// <typeparam name="T">The type of the value object.</typeparam>
-    public interface IValueObjectRepository<T>
+    public interface IRepository<T>
         where T : class
     {
         /// <summary>

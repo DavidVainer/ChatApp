@@ -8,14 +8,14 @@ namespace ChatApp.Application.Services.Implementations
     /// </summary>
     public class RoomManager : IRoomManager
     {
-        private readonly IEntityRepository<Room> _roomRepository;
-        private readonly IValueObjectRepository<RoomParticipant> _participantRepository;
+        private readonly IRepository<Room> _roomRepository;
+        private readonly IRepository<RoomParticipant> _participantRepository;
         private readonly IEntityIdGenerator _entityIdGenerator;
         private readonly IRoomDetailsBuilder _roomDetailsBuilder;
 
         public RoomManager(
-            IEntityRepository<Room> roomRepository, 
-            IValueObjectRepository<RoomParticipant> participantRepository, 
+            IRepository<Room> roomRepository,
+            IRepository<RoomParticipant> participantRepository, 
             IEntityIdGenerator entityIdGenerator,
             IRoomDetailsBuilder roomDetailsBuilder)
         {

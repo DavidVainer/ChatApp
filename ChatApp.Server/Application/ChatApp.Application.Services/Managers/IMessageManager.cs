@@ -16,13 +16,6 @@ namespace ChatApp.Application.Services
         IMessage SendMessage(SendMessageDto dto);
 
         /// <summary>
-        /// Retrieves all messages from a specified room.
-        /// </summary>
-        /// <param name="roomId">The unique identifier of the room.</param>
-        /// <returns>A collection of messages from the specified room.</returns>
-        IEnumerable<IMessage> GetRoomMessages(Guid roomId);
-
-        /// <summary>
         /// Marks a specific message as seen by a user.
         /// </summary>
         /// <param name="dto">Dto containing the message and user details.</param>

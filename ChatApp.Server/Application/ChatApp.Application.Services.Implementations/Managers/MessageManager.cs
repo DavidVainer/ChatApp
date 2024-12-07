@@ -8,11 +8,11 @@ namespace ChatApp.Application.Services.Implementations
     /// </summary>
     public class MessageManager : IMessageManager
     {
-        private readonly IEntityRepository<Message> _messageRepository;
-        private readonly IValueObjectRepository<MessageStatus> _messageStatusRepository;
+        private readonly IRepository<Message> _messageRepository;
+        private readonly IRepository<MessageStatus> _messageStatusRepository;
         private readonly IEntityIdGenerator _entityIdGenerator;
 
-        public MessageManager(IEntityRepository<Message> messageRepository, IValueObjectRepository<MessageStatus> messageStatusRepository, IEntityIdGenerator entityIdGenerator)
+        public MessageManager(IRepository<Message> messageRepository, IRepository<MessageStatus> messageStatusRepository, IEntityIdGenerator entityIdGenerator)
         {
             _messageRepository = messageRepository ?? throw new ArgumentNullException(nameof(messageRepository));
             _messageStatusRepository = messageStatusRepository ?? throw new ArgumentNullException(nameof(messageStatusRepository));
@@ -38,19 +38,6 @@ namespace ChatApp.Application.Services.Implementations
             _messageRepository.Insert(message);
 
             return message;
-        }
-
-        /// <summary>
-        /// Retrieves all messages from a specified room.
-        /// </summary>
-        /// <param name="roomId">The unique identifier of the room.</param>
-        /// <returns>A collection of messages from the specified room.</returns>
-        public IEnumerable<IMessage> GetRoomMessages(Guid roomId)
-        {
-            var messagesFilter = new Message { RoomId = roomId };
-            var messages = _messageRepository.GetByFilter(messagesFilter);
-
-            return messages;
         }
 
         /// <summary>

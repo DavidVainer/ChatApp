@@ -1,5 +1,6 @@
 using ChatApp.Application.Models;
 using ChatApp.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChatApp.API.Controllers
@@ -7,16 +8,13 @@ namespace ChatApp.API.Controllers
     /// <summary>
     /// Handles user operation requests.
     /// </summary>
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
         private readonly IUserManager _userManager;
 
-        /// <summary>
-        /// Initiates a new instance of the <see cref="UsersController"/> class.
-        /// </summary>
-        /// <param name="userManager">User manager service.</param>
         public UsersController(IUserManager userManager)
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));

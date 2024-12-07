@@ -58,17 +58,13 @@ namespace ChatApp.API.DependencyInjection.Modules
                     InsertQuery = @"
                         INSERT INTO Users (Id, Email, Password, DisplayName, CreatedAt)
                         VALUES (@Id, @Email, @Password, @DisplayNAme, @CreatedAt)",
-                    UpdateQuery = @"
-                        UPDATE Users
-                        SET IsOnline = @IsOnline
-                        WHERE Id = @Id",
                     DeleteQuery = "DELETE FROM Users WHERE Id = @Id"
                 })
                 .Named<IRepositorySettings>(USER_REPOSITORY_SETTINGS_NAME);
 
             builder
                 .RegisterType<UserRepository>()
-                .As<IEntityRepository<User>>()
+                .As<IRepository<User>>()
                 .WithParameter(ResolvedParameter.ForNamed<IRepositorySettings>(USER_REPOSITORY_SETTINGS_NAME))
                 .InstancePerLifetimeScope();
 
@@ -80,17 +76,13 @@ namespace ChatApp.API.DependencyInjection.Modules
                     InsertQuery = @"
                         INSERT INTO Rooms (Id, Name, CreatedAt)
                         VALUES (@Id, @Name, @CreatedAt)",
-                    UpdateQuery = @"
-                        UPDATE Rooms
-                        SET Name = @Name
-                        WHERE Id = @Id",
                     DeleteQuery = "DELETE FROM Rooms WHERE Id = @Id"
                 })
                 .Named<IRepositorySettings>(ROOM_REPOSITORY_SETTINGS_NAME);
 
             builder
                 .RegisterType<RoomRepository>()
-                .As<IEntityRepository<Room>>()
+                .As<IRepository<Room>>()
                 .WithParameter(ResolvedParameter.ForNamed<IRepositorySettings>(ROOM_REPOSITORY_SETTINGS_NAME))
                 .InstancePerLifetimeScope();
 
@@ -102,17 +94,13 @@ namespace ChatApp.API.DependencyInjection.Modules
                     InsertQuery = @"
                         INSERT INTO Messages (Id, RoomId, SenderId, Content, SentAt)
                         VALUES (@Id, @RoomId, @SenderId, @Content, @SentAt)",
-                    UpdateQuery = @"
-                        UPDATE Messages
-                        SET Content = @Content
-                        WHERE Id = @Id",
                     DeleteQuery = "DELETE FROM Messages WHERE Id = @Id"
                 })
                 .Named<IRepositorySettings>(MESSAGE_REPOSITORY_SETTINGS_NAME);
 
             builder
                 .RegisterType<MessageRepository>()
-                .As<IEntityRepository<Message>>()
+                .As<IRepository<Message>>()
                 .WithParameter(ResolvedParameter.ForNamed<IRepositorySettings>(MESSAGE_REPOSITORY_SETTINGS_NAME))
                 .InstancePerLifetimeScope();
 
@@ -130,7 +118,7 @@ namespace ChatApp.API.DependencyInjection.Modules
 
             builder
                 .RegisterType<RoomParticipantRepository>()
-                .As<IValueObjectRepository<RoomParticipant>>()
+                .As<IRepository<RoomParticipant>>()
                 .WithParameter(ResolvedParameter.ForNamed<IRepositorySettings>(ROOM_PARTICIPANT_REPOSITORY_SETTINGS_NAME))
                 .InstancePerLifetimeScope();
 
@@ -140,7 +128,7 @@ namespace ChatApp.API.DependencyInjection.Modules
                     TableName = "MessageStatuses",
                     GetAllQuery = "SELECT * FROM MessageStatuses",
                     InsertQuery = @"
-                        INSERT INTO RoomParticipants (MessageId, UserId, SeenAt)
+                        INSERT INTO MessageStatuses (MessageId, UserId, SeenAt)
                         VALUES (@MessageId, @UserId, @SeenAt)",
                     DeleteQuery = "DELETE FROM MessageStatuses WHERE MessageId = @MessageId AND UserId = @UserId"
                 })
@@ -148,7 +136,7 @@ namespace ChatApp.API.DependencyInjection.Modules
 
             builder
                 .RegisterType<MessageStatusRepository>()
-                .As<IValueObjectRepository<MessageStatus>>()
+                .As<IRepository<MessageStatus>>()
                 .WithParameter(ResolvedParameter.ForNamed<IRepositorySettings>(MESSAGE_STATUS_REPOSITORY_SETTINGS_NAME))
                 .InstancePerLifetimeScope();
         }

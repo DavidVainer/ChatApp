@@ -9,7 +9,7 @@ namespace ChatApp.Infrastructure.Implementations
     /// <summary>
     /// Base repository implementation for managing room operations using Dapper.
     /// </summary>
-    public class RoomRepository : BaseEntityRepository<Room>
+    public class RoomRepository : BaseRepository<Room>
     {
         public RoomRepository(IDbConnection dbConnection, IRepositorySettings settings, IFilterQueryBuilder filterQueryBuilder)
             : base(dbConnection, settings, filterQueryBuilder)
@@ -28,21 +28,6 @@ namespace ChatApp.Infrastructure.Implementations
             parameters.Add("Id", entity.Id);
             parameters.Add("Name", entity.Name);
             parameters.Add("CreatedAt", entity.CreatedAt);
-
-            return parameters;
-        }
-
-        /// <summary>
-        /// Builds update parameters for the room entity.
-        /// </summary>
-        /// <param name="entity">The room entity.</param>
-        /// <returns>The dynamic parameters.</returns>
-        protected override DynamicParameters GetUpdateParameters(Room entity)
-        {
-            var parameters = new DynamicParameters();
-
-            parameters.Add("Id", entity.Id);
-            parameters.Add("Name", entity.Name);
 
             return parameters;
         }

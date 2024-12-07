@@ -8,16 +8,16 @@
         /// <summary>
         /// The identifier of the message.
         /// </summary>
-        Guid MessageId { get; }
+        Guid? MessageId { get; }
 
         /// <summary>
         /// The identifier of the associated user.
         /// </summary>
-        Guid UserId { get; }
+        Guid? UserId { get; }
 
         /// <summary>
         /// The time when the user seen the message.
         /// </summary>
-        DateTime SeenAt { get; }
+        DateTime? SeenAt { get; }
     }
 }

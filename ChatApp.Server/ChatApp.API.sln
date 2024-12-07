@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp.API", "ChatApp.API\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E306B3AC-B280-4BD8-9821-8AFC26C02ACB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.Common.Models", "Common\ChatApp.Common.Models\ChatApp.Common.Models.csproj", "{58A61E18-5EA9-4D3A-B402-737AFAD901E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp.Common.Models", "Common\ChatApp.Common.Models\ChatApp.Common.Models.csproj", "{58A61E18-5EA9-4D3A-B402-737AFAD901E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.Common.Services", "Common\ChatApp.Common.Services\ChatApp.Common.Services.csproj", "{1FACED00-9273-4609-A591-848FFE2BA311}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp.Common.Services", "Common\ChatApp.Common.Services\ChatApp.Common.Services.csproj", "{1FACED00-9273-4609-A591-848FFE2BA311}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.Common.Implementations", "Common\ChatApp.Common.Implementations\ChatApp.Common.Implementations.csproj", "{C64ED151-DAD2-4E0D-AB7B-5787F0DE29C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp.Common.Implementations", "Common\ChatApp.Common.Implementations\ChatApp.Common.Implementations.csproj", "{C64ED151-DAD2-4E0D-AB7B-5787F0DE29C8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{7BC7C87A-836C-490E-B4E5-64D800A95BE0}"
 EndProject
@@ -19,23 +19,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{66C1ECB7-5C99-4F38-892D-4A5CB72D70DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.Domain.Models", "Domain\ChatApp.Domain.Models\ChatApp.Domain.Models.csproj", "{7FAD0F69-75B6-404E-9B23-BD4789123AAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp.Domain.Models", "Domain\ChatApp.Domain.Models\ChatApp.Domain.Models.csproj", "{7FAD0F69-75B6-404E-9B23-BD4789123AAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.Domain.Services", "Domain\ChatApp.Domain.Services\ChatApp.Domain.Services.csproj", "{0C2B248D-5736-45C6-9DDB-95EB357414F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp.Domain.Services", "Domain\ChatApp.Domain.Services\ChatApp.Domain.Services.csproj", "{0C2B248D-5736-45C6-9DDB-95EB357414F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.Domain.Services.Implementations", "Domain\ChatApp.Domain.Services.Implementations\ChatApp.Domain.Services.Implementations.csproj", "{BFE2285F-60AC-4469-9AE5-50F0D9CA9A4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp.Domain.Services.Implementations", "Domain\ChatApp.Domain.Services.Implementations\ChatApp.Domain.Services.Implementations.csproj", "{BFE2285F-60AC-4469-9AE5-50F0D9CA9A4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.Application.Models", "Application\ChatApp.Application.Models\ChatApp.Application.Models.csproj", "{498162E8-66A4-43D5-8F15-D81D486FFF94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp.Application.Models", "Application\ChatApp.Application.Models\ChatApp.Application.Models.csproj", "{498162E8-66A4-43D5-8F15-D81D486FFF94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.Application.Services", "Application\ChatApp.Application.Services\ChatApp.Application.Services.csproj", "{3AFDBABC-BA71-4B5B-B325-587D8D4C600E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp.Application.Services", "Application\ChatApp.Application.Services\ChatApp.Application.Services.csproj", "{3AFDBABC-BA71-4B5B-B325-587D8D4C600E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.Application.Services.Implementations", "Application\ChatApp.Application.Services.Implementations\ChatApp.Application.Services.Implementations.csproj", "{B73504C0-5839-4498-9253-CCC74495BFB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp.Application.Services.Implementations", "Application\ChatApp.Application.Services.Implementations\ChatApp.Application.Services.Implementations.csproj", "{B73504C0-5839-4498-9253-CCC74495BFB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.Infrastructure.Models", "Infrastructure\ChatApp.Infrastructure.Models\ChatApp.Infrastructure.Models.csproj", "{5CF3C511-975F-44E1-9837-2851BA363EC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp.Infrastructure.Models", "Infrastructure\ChatApp.Infrastructure.Models\ChatApp.Infrastructure.Models.csproj", "{5CF3C511-975F-44E1-9837-2851BA363EC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.Infrastructure.Services", "Infrastructure\ChatApp.Infrastructure.Services\ChatApp.Infrastructure.Services.csproj", "{F5D7CD63-1A7B-4972-84DC-0E9A1731F95A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp.Infrastructure.Services", "Infrastructure\ChatApp.Infrastructure.Services\ChatApp.Infrastructure.Services.csproj", "{F5D7CD63-1A7B-4972-84DC-0E9A1731F95A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.Infrastructure.Implementations", "Infrastructure\ChatApp.Infrastructure.Implementations\ChatApp.Infrastructure.Implementations.csproj", "{D75A6F75-69E6-4820-B1AA-ED54F0F9B944}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp.Infrastructure.Implementations", "Infrastructure\ChatApp.Infrastructure.Implementations\ChatApp.Infrastructure.Implementations.csproj", "{D75A6F75-69E6-4820-B1AA-ED54F0F9B944}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

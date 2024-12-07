@@ -7,12 +7,12 @@ namespace ChatApp.Application.Services.Implementations
     /// </summary>
     public class RoomParticipantDetailsBuilder : IRoomParticipantDetailsBuilder
     {
-        private readonly IValueObjectRepository<RoomParticipant> _participantRepository;
-        private readonly IEntityRepository<User> _userRepository;
+        private readonly IRepository<RoomParticipant> _participantRepository;
+        private readonly IRepository<User> _userRepository;
 
         private IList<IRoomParticipantDetails> _participantDetails;
 
-        public RoomParticipantDetailsBuilder(IValueObjectRepository<RoomParticipant> participantRepository, IEntityRepository<User> userRepository)
+        public RoomParticipantDetailsBuilder(IRepository<RoomParticipant> participantRepository, IRepository<User> userRepository)
         {
             _participantRepository = participantRepository ?? throw new ArgumentNullException(nameof(participantRepository));
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
