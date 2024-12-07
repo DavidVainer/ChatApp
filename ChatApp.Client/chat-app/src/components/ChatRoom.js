@@ -41,7 +41,7 @@ const ChatRoom = () => {
                 });
 
                 const connect = new HubConnectionBuilder()
-                    .withUrl("https://localhost:7159/chatHub")
+                    .withUrl("https://localhost:8081/chatHub")
                     .build();
 
                 connect.on("ReceiveMessage", (message) => {

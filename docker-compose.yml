@@ -1,0 +1,53 @@
+services:
+  database:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: chatapp-database
+    environment:
+      SA_PASSWORD: "P@ssw0rd"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    networks:
+      - app-network
+    volumes:
+      - sql_data:/var/opt/mssql
+
+  server:
+    build:
+      context: ./ChatApp.Server
+      dockerfile: ChatApp.API/Dockerfile
+    container_name: chatapp-server
+    environment:
+      ConnectionStrings__SqlConnection: "Server=database,1433;Database=ChatApp;User Id=sa;Password=P@ssw0rd;TrustServerCertificate=True;"
+      ASPNETCORE_HTTP_PORTS: 8080
+      ASPNETCORE_HTTPS_PORTS: 8081
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - app-network
+    depends_on:
+      - database
+
+  client:
+    build:
+      context: ./ChatApp.Client/chat-app
+      dockerfile: Dockerfile
+    container_name: chatapp-client
+    ports:
+      - "3000:80"
+    networks:
+      - app-network
+    depends_on:
+      - server
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  sql_data:
