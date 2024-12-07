@@ -26,11 +26,6 @@
         public string DisplayName { get; set; }
 
         /// <summary>
-        /// Indicates whether the user is currently online.
-        /// </summary>
-        public bool? IsOnline { get; set; }
-
-        /// <summary>
         /// The date when the user was created.
         /// </summary>
         public DateTime? CreatedAt { get; set; }

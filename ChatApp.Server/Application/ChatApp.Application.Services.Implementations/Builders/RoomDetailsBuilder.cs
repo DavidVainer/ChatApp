@@ -9,20 +9,20 @@ namespace ChatApp.Application.Services.Implementations
     {
         private readonly IEntityRepository<Room> _roomRepository;
         private readonly IEntityRepository<Message> _messageRepository;
+        private readonly IEntityRepository<User> _userRepository;
         private readonly IRoomParticipantDetailsBuilder _roomParticipantsBuilder;
 
         private IRoomDetails? _roomDetails;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RoomDetailsBuilder"/> class.
-        /// </summary>
-        /// <param name="roomRepository">Room repository service.</param>
-        /// <param name="messageRepository">Message repository service.</param>
-        /// <param name="roomParticipantsBuilder">Room participants builder service.</param>
-        public RoomDetailsBuilder(IEntityRepository<Room> roomRepository, IEntityRepository<Message> messageRepository, IRoomParticipantDetailsBuilder roomParticipantsBuilder)
+        public RoomDetailsBuilder(
+            IEntityRepository<Room> roomRepository, 
+            IEntityRepository<Message> messageRepository, 
+            IEntityRepository<User> userRepository, 
+            IRoomParticipantDetailsBuilder roomParticipantsBuilder)
         {
             _roomRepository = roomRepository ?? throw new ArgumentNullException(nameof(roomRepository));
             _messageRepository = messageRepository ?? throw new ArgumentNullException(nameof(messageRepository));
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _roomParticipantsBuilder = roomParticipantsBuilder ?? throw new ArgumentNullException(nameof(roomParticipantsBuilder));
         }
 
@@ -63,12 +63,34 @@ namespace ChatApp.Application.Services.Implementations
         }
 
         /// <summary>
+        /// Sets the message authors by gathering data about users who sent messages in the room.
+        /// </summary>
+        public void SetMessageAuthors()
+        {
+            var messageAuthorsIds = _roomDetails.Messages.Select(m => m.SenderId).Distinct().ToList();
+            var messageAuthors = new List<User>();
+
+            foreach (var authorId in messageAuthorsIds)
+            {
+                var userFilter = new User { Id = authorId };
+                var user = _userRepository.GetByFilter(userFilter).FirstOrDefault();
+
+                if (user != null)
+                {
+                    messageAuthors.Add(user);
+                }
+            }
+
+            _roomDetails.MessageAuthors = messageAuthors;
+        }
+
+        /// <summary>
         /// Sets the participants by gathering data about users in the room.
         /// </summary>
         public void SetParticipants()
         {
             _roomParticipantsBuilder.Initialize(_roomDetails.RoomId);
-            _roomParticipantsBuilder.SetParticipantDetails();
+            _roomParticipantsBuilder.SetParticipantDetails(new RoomParticipant {  RoomId = _roomDetails.RoomId });
 
             var participants = _roomParticipantsBuilder.Build();
 

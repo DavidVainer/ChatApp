@@ -12,12 +12,6 @@ namespace ChatApp.Application.Services.Implementations
         private readonly IValueObjectRepository<MessageStatus> _messageStatusRepository;
         private readonly IEntityIdGenerator _entityIdGenerator;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MessageManager"/> class.
-        /// </summary>
-        /// <param name="messageRepository">Message repository.</param>
-        /// <param name="messageStatusRepository">Message status repository.</param>
-        /// <param name="entityIdGenerator">Entity id generator service.</param>
         public MessageManager(IEntityRepository<Message> messageRepository, IValueObjectRepository<MessageStatus> messageStatusRepository, IEntityIdGenerator entityIdGenerator)
         {
             _messageRepository = messageRepository ?? throw new ArgumentNullException(nameof(messageRepository));
@@ -38,7 +32,7 @@ namespace ChatApp.Application.Services.Implementations
                 RoomId = dto.RoomId,
                 SenderId = dto.SenderId,
                 Content = dto.Content,
-                SentAt = DateTime.UtcNow
+                SentAt = DateTime.Now,
             };
 
             _messageRepository.Insert(message);
@@ -69,7 +63,7 @@ namespace ChatApp.Application.Services.Implementations
             {
                 MessageId = dto.MessageId,
                 UserId = dto.UserId,
-                SeenAt = DateTime.UtcNow
+                SeenAt = DateTime.Now,
             };
 
             _messageStatusRepository.Insert(messageStatus);

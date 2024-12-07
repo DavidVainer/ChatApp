@@ -11,12 +11,6 @@ namespace ChatApp.Infrastructure.Implementations
     /// </summary>
     public class RoomRepository : BaseEntityRepository<Room>
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RoomRepository"/> class.
-        /// </summary>
-        /// <param name="dbConnection">Database connection.</param>
-        /// <param name="settings">Repository settings.</param>
-        /// <param name="filterQueryBuilder">Get by filter query builder service.</param>
         public RoomRepository(IDbConnection dbConnection, IRepositorySettings settings, IFilterQueryBuilder filterQueryBuilder)
             : base(dbConnection, settings, filterQueryBuilder)
         {

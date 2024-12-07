@@ -11,12 +11,6 @@ namespace ChatApp.Infrastructure.Implementations
     /// </summary>
     public class MessageStatusRepository : BaseValueObjectRepository<MessageStatus>
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MessageStatusRepository"/> class.
-        /// </summary>
-        /// <param name="dbConnection">Database connection.</param>
-        /// <param name="settings">Repository settings.</param>
-        /// <param name="filterQueryBuilder">Get by filter query builder service.</param>
         public MessageStatusRepository(IDbConnection dbConnection, IRepositorySettings settings, IFilterQueryBuilder filterQueryBuilder)
             : base(dbConnection, settings, filterQueryBuilder)
         {

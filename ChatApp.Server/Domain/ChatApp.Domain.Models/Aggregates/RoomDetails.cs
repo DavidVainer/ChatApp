@@ -21,6 +21,11 @@
         public IEnumerable<IMessage> Messages { get; set; }
 
         /// <summary>
+        /// Collection of users who have written messages in the room.
+        /// </summary>
+        public IEnumerable<IUser> MessageAuthors { get; set; }
+
+        /// <summary>
         /// Collection of participants in the room.
         /// </summary>
         public IEnumerable<IRoomParticipantDetails> Participants { get; set; }

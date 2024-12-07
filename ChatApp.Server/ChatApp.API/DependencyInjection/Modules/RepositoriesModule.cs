@@ -56,8 +56,8 @@ namespace ChatApp.API.DependencyInjection.Modules
                     TableName = "Users",
                     GetAllQuery = "SELECT * FROM Users",
                     InsertQuery = @"
-                        INSERT INTO Users (Id, Email, Password, DisplayName, CreatedAt, IsOnline)
-                        VALUES (@Id, @Email, @Password, @DisplayNAme, @CreatedAt, @IsOnline)",
+                        INSERT INTO Users (Id, Email, Password, DisplayName, CreatedAt)
+                        VALUES (@Id, @Email, @Password, @DisplayNAme, @CreatedAt)",
                     UpdateQuery = @"
                         UPDATE Users
                         SET IsOnline = @IsOnline

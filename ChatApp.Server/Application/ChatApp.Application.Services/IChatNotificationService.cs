@@ -27,9 +27,9 @@ namespace ChatApp.Application.Services
         /// Notifies that a user has joined the chat.
         /// </summary>
         /// <param name="roomId">Room unique identifier.</param>
-        /// <param name="connectionId">User unique identifier.</param>
+        /// <param name="participantDetails">Participant details object.</param>
         /// <returns>A task representing asynchronus operation.</returns>
-        Task NotifyUserJoinedAsync(string roomId, string userId);
+        Task NotifyUserJoinedAsync(string roomId, IRoomParticipantDetails participantDetails);
 
         /// <summary>
         /// Notifies that a user has left the chat.

@@ -1,5 +1,6 @@
 ﻿using ChatApp.Application.Models;
 using ChatApp.Application.Services;
+using ChatApp.Domain.Models;
 using Microsoft.AspNetCore.SignalR;
 
 namespace ChatApp.Infrastructure.Implementations
@@ -12,18 +13,14 @@ namespace ChatApp.Infrastructure.Implementations
         private readonly IRoomManager _roomManager;
         private readonly IMessageManager _messageManager;
         private readonly IChatNotificationService _chatNotificationService;
+        private readonly IRoomParticipantDetailsBuilder _roomParticipantDetailsBuilder;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChatHub"/> class.
-        /// </summary>
-        /// <param name="roomManager">Room manager service.</param>
-        /// <param name="messageManager">Message manager service.</param>
-        /// <param name="chatNotificationService">Chat notification service.</param>
-        public ChatHub(IRoomManager roomManager, IMessageManager messageManager, IChatNotificationService chatNotificationService)
+        public ChatHub(IRoomManager roomManager, IMessageManager messageManager, IChatNotificationService chatNotificationService, IRoomParticipantDetailsBuilder roomParticipantDetailsBuilder)
         {
             _roomManager = roomManager ?? throw new ArgumentNullException(nameof(roomManager));
             _messageManager = messageManager ?? throw new ArgumentNullException(nameof(messageManager));
             _chatNotificationService = chatNotificationService ?? throw new ArgumentNullException(nameof(chatNotificationService));
+            _roomParticipantDetailsBuilder = roomParticipantDetailsBuilder ?? throw new ArgumentNullException(nameof(roomParticipantDetailsBuilder));
         }
 
         /// <summary>
@@ -42,8 +39,13 @@ namespace ChatApp.Infrastructure.Implementations
 
             _roomManager.AddParticipant(participantActionDto);
 
-            await _chatNotificationService.AddToGroupAsync(Context.ConnectionId, roomId);
-            await _chatNotificationService.NotifyUserJoinedAsync(roomId, userId);
+            _roomParticipantDetailsBuilder.Initialize(Guid.Parse(roomId));
+            _roomParticipantDetailsBuilder.SetParticipantDetails(new RoomParticipant { UserId = Guid.Parse(userId) });
+
+            var participantDetails = _roomParticipantDetailsBuilder.Build().FirstOrDefault();
+
+            await _chatNotificationService.AddToGroupAsync(roomId, Context.ConnectionId);
+            await _chatNotificationService.NotifyUserJoinedAsync(roomId, participantDetails);
         }
 
         /// <summary>
@@ -60,10 +62,10 @@ namespace ChatApp.Infrastructure.Implementations
                 UserId = Guid.Parse(userId),
             };
 
-            _roomManager.AddParticipant(participantActionDto);
+            _roomManager.RemoveParticipant(participantActionDto);
 
-            await _chatNotificationService.RemoveFromGroupAsync(Context.ConnectionId, roomId);
-            await _chatNotificationService.NotifyUserLeftAsync(roomId, Context.ConnectionId);
+            await _chatNotificationService.RemoveFromGroupAsync(roomId, Context.ConnectionId);
+            await _chatNotificationService.NotifyUserLeftAsync(roomId, userId);
         }
 
         /// <summary>

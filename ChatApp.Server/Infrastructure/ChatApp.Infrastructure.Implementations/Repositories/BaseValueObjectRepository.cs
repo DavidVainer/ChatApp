@@ -17,12 +17,6 @@ namespace ChatApp.Infrastructure.Implementations
         protected readonly IRepositorySettings _settings;
         protected readonly IFilterQueryBuilder _filterQueryBuilder;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BaseValueObjectRepository{TEntity}"/> class.
-        /// </summary>
-        /// <param name="dbConnection">Database connection.</param>
-        /// <param name="settings">Repository settings.</param>
-        /// <param name="filterQueryBuilder">Get by filter query builder service.</param>
         public BaseValueObjectRepository(IDbConnection dbConnection, IRepositorySettings settings, IFilterQueryBuilder filterQueryBuilder)
         {
             _dbConnection = dbConnection ?? throw new ArgumentNullException(nameof(dbConnection));

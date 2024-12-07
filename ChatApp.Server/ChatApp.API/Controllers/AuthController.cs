@@ -34,7 +34,9 @@ namespace ChatApp.API.Controllers
             {
                 var user = _loginManager.Login(dto);
 
-                return Ok(user);
+                return Ok(new {
+                    userId = user.Id,
+                });
             }
             catch (Exception ex)
             {
@@ -51,8 +53,6 @@ namespace ChatApp.API.Controllers
         {
             try
             {
-                _loginManager.Logout(userId);
-
                 return Ok();
             }
             catch (Exception ex)

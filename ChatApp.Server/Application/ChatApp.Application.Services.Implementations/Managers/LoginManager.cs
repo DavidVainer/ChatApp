@@ -11,11 +11,6 @@ namespace ChatApp.Application.Services.Implementations
         private readonly IEntityRepository<User> _userRepository;
         private readonly IPasswordService _passwordService;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LoginManager"/> class.
-        /// </summary>
-        /// <param name="userRepository">User repository service.</param>
-        /// <param name="passwordService">Password service.</param>
         public LoginManager(IEntityRepository<User> userRepository, IPasswordService passwordService)
         {
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
@@ -37,25 +32,7 @@ namespace ChatApp.Application.Services.Implementations
                 throw new UnauthorizedAccessException("Invalid email or password.");
             }
 
-            user.IsOnline = true;
-            _userRepository.Update(user);
-
             return user;
-        }
-
-        /// <summary>
-        /// Logs out the specified user.
-        /// </summary>
-        /// <param name="userId">The unique identifier of the user.</param>
-        public void Logout(Guid userId)
-        {
-            var user = new User
-            {
-                Id = userId,
-                IsOnline = false
-            };
-
-            _userRepository.Update(user);
         }
     }
 }

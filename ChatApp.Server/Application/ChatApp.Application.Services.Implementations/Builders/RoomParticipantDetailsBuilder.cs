@@ -11,13 +11,7 @@ namespace ChatApp.Application.Services.Implementations
         private readonly IEntityRepository<User> _userRepository;
 
         private IList<IRoomParticipantDetails> _participantDetails;
-        private Guid _roomId;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RoomParticipantDetailsBuilder"/> class.
-        /// </summary>
-        /// <param name="participantRepository">Participant repository service.</param>
-        /// <param name="userRepository">User repository service.</param>
         public RoomParticipantDetailsBuilder(IValueObjectRepository<RoomParticipant> participantRepository, IEntityRepository<User> userRepository)
         {
             _participantRepository = participantRepository ?? throw new ArgumentNullException(nameof(participantRepository));
@@ -32,16 +26,15 @@ namespace ChatApp.Application.Services.Implementations
         public void Initialize(Guid roomId)
         {
             _participantDetails = new List<IRoomParticipantDetails>();
-            _roomId = roomId;
         }
 
         /// <summary>
         /// Sets the participant details by gathering data about users in the room.
         /// </summary>
-        public void SetParticipantDetails()
+        /// <param name="filter">Room participant filter.</param>
+        public void SetParticipantDetails(RoomParticipant filter)
         {
-            var participantsFilter = new RoomParticipant { RoomId = _roomId };
-            var participants = _participantRepository.GetByFilter(participantsFilter);
+            var participants = _participantRepository.GetByFilter(filter);
 
             foreach (var participant in participants)
             {

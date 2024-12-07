@@ -12,12 +12,6 @@ namespace ChatApp.Application.Services.Implementations
         private readonly IEntityIdGenerator _entityIdGenerator;
         private readonly IPasswordService _passwordService;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UserManager"/> class.
-        /// </summary>
-        /// <param name="userRepository">User repository service.</param>
-        /// <param name="entityIdGenerator">Entity id generator service.</param>
-        /// <param name="passwordService">Password service.</param>
         public UserManager(IEntityRepository<User> userRepository, IEntityIdGenerator entityIdGenerator, IPasswordService passwordService)
         {
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
@@ -39,8 +33,7 @@ namespace ChatApp.Application.Services.Implementations
                 Email = dto.Email,
                 Password = hashedPassword,
                 DisplayName = dto.DisplayName,
-                IsOnline = false,
-                CreatedAt = DateTime.UtcNow
+                CreatedAt = DateTime.Now,
             };
 
             _userRepository.Insert(user);

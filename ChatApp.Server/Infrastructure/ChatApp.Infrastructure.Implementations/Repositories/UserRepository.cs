@@ -11,12 +11,6 @@ namespace ChatApp.Infrastructure.Implementations
     /// </summary>
     public class UserRepository : BaseEntityRepository<User>
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UserRepository"/> class.
-        /// </summary>
-        /// <param name="dbConnection">Database connection.</param>
-        /// <param name="settings">Repository settings.</param>
-        /// <param name="filterQueryBuilder">Get by filter query builder service.</param>
         public UserRepository(IDbConnection dbConnection, IRepositorySettings settings, IFilterQueryBuilder filterQueryBuilder)
             : base(dbConnection, settings, filterQueryBuilder)
         {
@@ -35,7 +29,6 @@ namespace ChatApp.Infrastructure.Implementations
             parameters.Add("Email", entity.Email);
             parameters.Add("Password", entity.Password);
             parameters.Add("DisplayName", entity.DisplayName);
-            parameters.Add("IsOnline", entity.IsOnline);
             parameters.Add("CreatedAt", entity.CreatedAt);
 
             return parameters;
@@ -51,7 +44,6 @@ namespace ChatApp.Infrastructure.Implementations
             var parameters = new DynamicParameters();
 
             parameters.Add("Id", entity.Id);
-            parameters.Add("IsOnline", entity.IsOnline);
 
             return parameters;
         }
