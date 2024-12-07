@@ -24,6 +24,11 @@ namespace ChatApp.Application.Services
         void SetMessages();
 
         /// <summary>
+        /// Sets the message authors by gathering data about users who sent messages in the room.
+        /// </summary>
+        void SetMessageAuthors();
+
+        /// <summary>
         /// Sets the participants by gathering data about users in the room.
         /// </summary>
         void SetParticipants();

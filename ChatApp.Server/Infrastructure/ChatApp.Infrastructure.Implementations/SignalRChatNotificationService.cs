@@ -11,10 +11,6 @@ namespace ChatApp.Infrastructure.Implementations
     {
         private readonly IHubContext<ChatHub> _hubContext;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SignalRChatNotificationService"/> class.
-        /// </summary>
-        /// <param name="hubContext">The context for interacting with the SignalR hub.</param>
         public SignalRChatNotificationService(IHubContext<ChatHub> hubContext)
         {
             _hubContext = hubContext ?? throw new ArgumentNullException(nameof(hubContext));
@@ -46,11 +42,11 @@ namespace ChatApp.Infrastructure.Implementations
         /// Notifies that a user has joined the chat.
         /// </summary>
         /// <param name="roomId">Room unique identifier.</param>
-        /// <param name="userId">User unique identifier.</param>
+        /// <param name="participantDetails">Participant details object.</param>
         /// <returns>A task representing asynchronus operation.</returns>
-        public async Task NotifyUserJoinedAsync(string roomId, string userId)
+        public async Task NotifyUserJoinedAsync(string roomId, IRoomParticipantDetails participantDetails)
         {
-            await _hubContext.Clients.Group(roomId).SendAsync(ChatEvents.UserJoined.ToString(), userId);
+            await _hubContext.Clients.Group(roomId).SendAsync(ChatEvents.UserJoined.ToString(), participantDetails);
         }
 
         /// <summary>
@@ -72,7 +68,7 @@ namespace ChatApp.Infrastructure.Implementations
         /// <returns>A task representing asynchronus operation.</returns>
         public async Task NotifyMessageRecievedAsync(string roomId, IMessage message)
         {
-            await _hubContext.Clients.Group(roomId).SendAsync(ChatEvents.ReceiveMessage.ToString(), message);
+            await _hubContext.Clients.Group(roomId).SendAsync("ReceiveMessage", message);
         }
 
         /// <summary>

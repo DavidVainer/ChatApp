@@ -13,12 +13,6 @@ namespace ChatApp.Application.Services.Implementations
         private readonly IEntityIdGenerator _entityIdGenerator;
         private readonly IRoomDetailsBuilder _roomDetailsBuilder;
 
-        /// <summary>
-        /// Initializes a new instnace of <see cref="RoomManager"/> class.
-        /// </summary>
-        /// <param name="roomRepository">Room repository service.</param>
-        /// <param name="participantRepository">Participant repository service.</param>
-        /// <param name="entityIdGenerator">Entity id generator service.</param>
         public RoomManager(
             IEntityRepository<Room> roomRepository, 
             IValueObjectRepository<RoomParticipant> participantRepository, 
@@ -51,6 +45,7 @@ namespace ChatApp.Application.Services.Implementations
             _roomDetailsBuilder.Initialize(roomId);
             _roomDetailsBuilder.SetRoomProperties();
             _roomDetailsBuilder.SetMessages();
+            _roomDetailsBuilder.SetMessageAuthors(); // TODO: Remove passwords
             _roomDetailsBuilder.SetParticipants();
 
             var roomDetails = _roomDetailsBuilder.Build();
@@ -69,7 +64,7 @@ namespace ChatApp.Application.Services.Implementations
             {
                 Id = _entityIdGenerator.Generate(),
                 Name = dto.Name,
-                CreatedAt = DateTime.UtcNow
+                CreatedAt = DateTime.Now,
             };
 
             _roomRepository.Insert(room);
@@ -87,7 +82,7 @@ namespace ChatApp.Application.Services.Implementations
             {
                 RoomId = dto.RoomId,
                 UserId = dto.UserId,
-                JoinedAt = DateTime.UtcNow
+                JoinedAt = DateTime.Now,
             };
 
             _participantRepository.Insert(participant);

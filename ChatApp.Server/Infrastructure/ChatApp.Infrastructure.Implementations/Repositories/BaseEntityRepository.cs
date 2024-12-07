@@ -13,12 +13,6 @@ namespace ChatApp.Infrastructure.Implementations
     public abstract class BaseEntityRepository<T> : BaseValueObjectRepository<T>, IEntityRepository<T>
         where T : class
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BaseValueObjectRepository{TEntity}"/> class.
-        /// </summary>
-        /// <param name="dbConnection">Database connection.</param>
-        /// <param name="settings">Repository settings.</param>
-        /// <param name="filterQueryBuilder">Get by filter query builder service.</param>
         public BaseEntityRepository(IDbConnection dbConnection, IRepositorySettings settings, IFilterQueryBuilder filterQueryBuilder)
             : base(dbConnection, settings, filterQueryBuilder)
         {

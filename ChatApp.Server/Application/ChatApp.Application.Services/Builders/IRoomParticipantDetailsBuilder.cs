@@ -16,7 +16,8 @@ namespace ChatApp.Application.Services
         /// <summary>
         /// Sets the participant details by gathering data about users in the room.
         /// </summary>
-        void SetParticipantDetails();
+        /// <param name="filter">Room participant filter.</param>
+        void SetParticipantDetails(RoomParticipant filter);
 
         /// <summary>
         /// Constructs the room participant details aggregated object collection.

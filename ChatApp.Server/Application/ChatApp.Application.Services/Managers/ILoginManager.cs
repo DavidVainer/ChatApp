@@ -14,11 +14,5 @@ namespace ChatApp.Application.Services
         /// <param name="dto">Dto containing the user's login credentials.</param>
         /// <returns>The logged in user.</returns>
         IUser Login(LoginUserDto dto);
-
-        /// <summary>
-        /// Logs out the specified user.
-        /// </summary>
-        /// <param name="userId">The unique identifier of the user.</param>
-        void Logout(Guid userId);
     }
 }
