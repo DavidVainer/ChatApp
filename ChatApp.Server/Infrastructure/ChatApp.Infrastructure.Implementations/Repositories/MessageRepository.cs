@@ -9,7 +9,7 @@ namespace ChatApp.Infrastructure.Implementations
     /// <summary>
     /// Base repository implementation for managing message operations using Dapper.
     /// </summary>
-    public class MessageRepository : BaseEntityRepository<Message>
+    public class MessageRepository : BaseRepository<Message>
     {
         public MessageRepository(IDbConnection dbConnection, IRepositorySettings settings, IFilterQueryBuilder filterQueryBuilder)
             : base(dbConnection, settings, filterQueryBuilder)
@@ -30,21 +30,6 @@ namespace ChatApp.Infrastructure.Implementations
             parameters.Add("SenderId", entity.SenderId);
             parameters.Add("Content", entity.Content);
             parameters.Add("SentAt", entity.SentAt);
-
-            return parameters;
-        }
-
-        /// <summary>
-        /// Builds update parameters for the message entity.
-        /// </summary>
-        /// <param name="entity">The message entity.</param>
-        /// <returns>The dynamic parameters.</returns>
-        protected override DynamicParameters GetUpdateParameters(Message entity)
-        {
-            var parameters = new DynamicParameters();
-
-            parameters.Add("Id", entity.Id);
-            parameters.Add("Content", entity.Content);
 
             return parameters;
         }

@@ -7,22 +7,25 @@ namespace ChatApp.Application.Services.Implementations
     /// </summary>
     public class RoomDetailsBuilder : IRoomDetailsBuilder
     {
-        private readonly IEntityRepository<Room> _roomRepository;
-        private readonly IEntityRepository<Message> _messageRepository;
-        private readonly IEntityRepository<User> _userRepository;
+        private readonly IRepository<Room> _roomRepository;
+        private readonly IRepository<Message> _messageRepository;
+        private readonly IRepository<User> _userRepository;
+        private readonly IRepository<MessageStatus> _messageStatusRepository;
         private readonly IRoomParticipantDetailsBuilder _roomParticipantsBuilder;
 
         private IRoomDetails? _roomDetails;
 
         public RoomDetailsBuilder(
-            IEntityRepository<Room> roomRepository, 
-            IEntityRepository<Message> messageRepository, 
-            IEntityRepository<User> userRepository, 
+            IRepository<Room> roomRepository,
+            IRepository<Message> messageRepository,
+            IRepository<User> userRepository,
+            IRepository<MessageStatus> messageStatusRepository,
             IRoomParticipantDetailsBuilder roomParticipantsBuilder)
         {
             _roomRepository = roomRepository ?? throw new ArgumentNullException(nameof(roomRepository));
             _messageRepository = messageRepository ?? throw new ArgumentNullException(nameof(messageRepository));
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+            _messageStatusRepository = messageStatusRepository ?? throw new ArgumentNullException(nameof(messageStatusRepository));
             _roomParticipantsBuilder = roomParticipantsBuilder ?? throw new ArgumentNullException(nameof(roomParticipantsBuilder));
         }
 
@@ -58,6 +61,14 @@ namespace ChatApp.Application.Services.Implementations
         {
             var messagesFilter = new Message { RoomId = _roomDetails.RoomId };
             var messages = _messageRepository.GetByFilter(messagesFilter);
+
+
+            foreach (var message in messages)
+            {
+                var seenBy = _messageStatusRepository.GetByFilter(new MessageStatus { MessageId = (Guid)message.Id }).Select(x => (Guid)x.UserId);
+
+                message.SeenBy = seenBy;
+            }
 
             _roomDetails.Messages = messages;
         }

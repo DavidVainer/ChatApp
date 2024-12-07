@@ -6,7 +6,7 @@
     public class MarkMessageAsSeenDto
     {
         /// <summary>
-        /// The unique identifier of a message.
+        /// The unique identifier of the mssage.
         /// </summary>
         public Guid MessageId { get; set; }
 

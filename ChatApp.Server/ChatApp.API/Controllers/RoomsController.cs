@@ -1,6 +1,6 @@
 using ChatApp.Application.Models;
 using ChatApp.Application.Services;
-using ChatApp.Application.Services.Implementations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChatApp.API.Controllers
@@ -8,16 +8,13 @@ namespace ChatApp.API.Controllers
     /// <summary>
     /// Handles room operation requests.
     /// </summary>
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class RoomsController : ControllerBase
     {
         private readonly IRoomManager _roomManager;
 
-        /// <summary>
-        /// Initiates a new instance of the <see cref="RoomsController"/> class.
-        /// </summary>
-        /// <param name="roomManager">Room manager service.</param>
         public RoomsController(IRoomManager roomManager)
         {
             _roomManager = roomManager ?? throw new ArgumentNullException(nameof(roomManager));

@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ChatApp.API.DependencyInjection.Modules;
+using ChatApp.Application.Services;
 using ChatApp.Common.Services;
 using ChatApp.Infrastructure.Implementations;
 
@@ -35,6 +36,11 @@ namespace ChatApp.API.DependencyInjection
             container
                 .RegisterType<AutofacStrategyResolver>()
                 .As<IStrategyResolver>()
+                .InstancePerLifetimeScope();
+
+            container
+                .RegisterType<JwtTokenService>()
+                .As<ITokenService>()
                 .InstancePerLifetimeScope();
 
             container

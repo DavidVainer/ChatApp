@@ -29,5 +29,10 @@
         /// The time the message was sent.
         /// </summary>
         public DateTime? SentAt { get; set; }
+
+        /// <summary>
+        /// List of users identifiers who have seen this message.
+        /// </summary>
+        public IEnumerable<Guid> SeenBy { get; set; }
     }
 }

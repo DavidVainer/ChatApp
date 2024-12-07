@@ -8,11 +8,11 @@ namespace ChatApp.Application.Services.Implementations
     /// </summary>
     public class UserManager : IUserManager
     {
-        private readonly IEntityRepository<User> _userRepository;
+        private readonly IRepository<User> _userRepository;
         private readonly IEntityIdGenerator _entityIdGenerator;
         private readonly IPasswordService _passwordService;
 
-        public UserManager(IEntityRepository<User> userRepository, IEntityIdGenerator entityIdGenerator, IPasswordService passwordService)
+        public UserManager(IRepository<User> userRepository, IEntityIdGenerator entityIdGenerator, IPasswordService passwordService)
         {
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _entityIdGenerator = entityIdGenerator ?? throw new ArgumentNullException(nameof(entityIdGenerator));

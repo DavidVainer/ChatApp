@@ -9,7 +9,7 @@ namespace ChatApp.Infrastructure.Implementations
     /// <summary>
     /// Base repository implementation for managing user operations using Dapper.
     /// </summary>
-    public class UserRepository : BaseEntityRepository<User>
+    public class UserRepository : BaseRepository<User>
     {
         public UserRepository(IDbConnection dbConnection, IRepositorySettings settings, IFilterQueryBuilder filterQueryBuilder)
             : base(dbConnection, settings, filterQueryBuilder)
@@ -30,20 +30,6 @@ namespace ChatApp.Infrastructure.Implementations
             parameters.Add("Password", entity.Password);
             parameters.Add("DisplayName", entity.DisplayName);
             parameters.Add("CreatedAt", entity.CreatedAt);
-
-            return parameters;
-        }
-
-        /// <summary>
-        /// Builds update parameters for the user entity.
-        /// </summary>
-        /// <param name="entity">The user entity.</param>
-        /// <returns>The dynamic parameters.</returns>
-        protected override DynamicParameters GetUpdateParameters(User entity)
-        {
-            var parameters = new DynamicParameters();
-
-            parameters.Add("Id", entity.Id);
 
             return parameters;
         }
