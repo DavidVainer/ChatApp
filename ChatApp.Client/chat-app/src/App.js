@@ -46,7 +46,11 @@ const App = () => {
             <Routes>
                 <Route path="/login" element={<LoginPage />} />
 
-                <Route path="/" element={<Layout />}>
+                <Route path="/" element={
+                    <PrivateRoute>
+                        <Layout />
+                    </PrivateRoute>
+                }>
                     <Route path="/rooms" element={
                         <PrivateRoute>
                             <RoomsDashboard />

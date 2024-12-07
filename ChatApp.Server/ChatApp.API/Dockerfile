@@ -1,25 +1,25 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+# Use the official .NET SDK image for building
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER app
-WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["ChatApp.API/ChatApp.API.csproj", "ChatApp.API/"]
-RUN dotnet restore "./ChatApp.API/ChatApp.API.csproj"
+# Copy everything
 COPY . .
-WORKDIR "/src/ChatApp.API"
-RUN dotnet build "./ChatApp.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./ChatApp.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+# Restore dependencies
+RUN dotnet restore "ChatApp.API/ChatApp.API.csproj"
 
-FROM base AS final
+# Build the API
+RUN dotnet build "ChatApp.API/ChatApp.API.csproj" -c Release -o /app/build
+
+# Publish the build
+RUN dotnet publish "ChatApp.API/ChatApp.API.csproj" -c Release -o /app/publish
+
+# Use the official runtime image for running
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/publish .
+
 ENTRYPOINT ["dotnet", "ChatApp.API.dll"]
