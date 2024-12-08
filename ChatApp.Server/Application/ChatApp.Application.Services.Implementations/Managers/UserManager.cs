@@ -34,6 +34,7 @@ namespace ChatApp.Application.Services.Implementations
                 Password = hashedPassword,
                 DisplayName = dto.DisplayName,
                 CreatedAt = DateTime.Now,
+                Deleted = false,
             };
 
             _userRepository.Insert(user);

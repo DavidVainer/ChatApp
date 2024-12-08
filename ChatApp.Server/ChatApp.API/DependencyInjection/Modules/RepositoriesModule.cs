@@ -58,9 +58,9 @@ namespace ChatApp.API.DependencyInjection.Modules
                     GetAllQuery = "SELECT * FROM Users",
                     GetByIdQuery = "SELECT * FROM Users WHERE Id = @Id",
                     InsertQuery = @"
-                        INSERT INTO Users (Id, Email, Password, DisplayName, CreatedAt)
-                        VALUES (@Id, @Email, @Password, @DisplayName, @CreatedAt)",
-                    DeleteQuery = "DELETE FROM Users WHERE Id = @Id"
+                        INSERT INTO Users (Id, Email, Password, DisplayName, CreatedAt, Deleted)
+                        VALUES (@Id, @Email, @Password, @DisplayName, @CreatedAt, @Deleted)",
+                    DeleteQuery = "UPDATE Users SET Deleted = 1 WHERE Id = @Id"
                 })
                 .Named<IRepositorySettings>(USER_REPOSITORY_SETTINGS_NAME);
 
@@ -77,9 +77,9 @@ namespace ChatApp.API.DependencyInjection.Modules
                     GetAllQuery = "SELECT * FROM Rooms",
                     GetByIdQuery = "SELECT * FROM Rooms WHERE Id = @Id",
                     InsertQuery = @"
-                        INSERT INTO Rooms (Id, Name, CreatedAt)
-                        VALUES (@Id, @Name, @CreatedAt)",
-                    DeleteQuery = "DELETE FROM Rooms WHERE Id = @Id"
+                        INSERT INTO Rooms (Id, Name, CreatedAt, Deleted)
+                        VALUES (@Id, @Name, @CreatedAt, @Deleted)",
+                    DeleteQuery = "UPDATE Rooms SET Deleted = 1 WHERE Id = @Id"
                 })
                 .Named<IRepositorySettings>(ROOM_REPOSITORY_SETTINGS_NAME);
 
@@ -96,9 +96,9 @@ namespace ChatApp.API.DependencyInjection.Modules
                     GetAllQuery = "SELECT * FROM Messages",
                     GetByIdQuery = "SELECT * FROM Messages WHERE Id = @Id",
                     InsertQuery = @"
-                        INSERT INTO Messages (Id, RoomId, SenderId, Content, SentAt)
-                        VALUES (@Id, @RoomId, @SenderId, @Content, @SentAt)",
-                    DeleteQuery = "DELETE FROM Messages WHERE Id = @Id"
+                        INSERT INTO Messages (Id, RoomId, SenderId, Content, SentAt, Deleted)
+                        VALUES (@Id, @RoomId, @SenderId, @Content, @SentAt, @Deleted)",
+                    DeleteQuery = "UPDATE Messages SET Deleted = 1 WHERE Id = @Id"
                 })
                 .Named<IRepositorySettings>(MESSAGE_REPOSITORY_SETTINGS_NAME);
 

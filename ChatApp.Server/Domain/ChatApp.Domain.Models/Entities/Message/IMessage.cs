@@ -34,5 +34,10 @@
         /// List of users identifiers who have seen this message.
         /// </summary>
         IList<Guid> SeenBy { get; }
+
+        /// <summary>
+        /// Indicates whether the message has been deleted.
+        /// </summary>
+        bool? Deleted { get; }
     }
 }

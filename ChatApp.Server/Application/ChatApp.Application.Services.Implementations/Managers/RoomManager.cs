@@ -36,6 +36,16 @@ namespace ChatApp.Application.Services.Implementations
         }
 
         /// <summary>
+        /// Retrieves all active rooms.
+        /// </summary>
+        /// <returns>Collection of existing active rooms.</returns>
+        public IEnumerable<IRoom> GetActiveRooms()
+        {
+            var rooms = _roomRepository.GetAll().Where(room => !(room.Deleted ?? false));
+            return rooms;
+        }
+
+        /// <summary>
         /// Retrieves the details of the specified room.
         /// </summary>
         /// <param name="roomId">Room unique identifier.</param>
@@ -65,6 +75,7 @@ namespace ChatApp.Application.Services.Implementations
                 Id = _entityIdGenerator.Generate(),
                 Name = dto.Name,
                 CreatedAt = DateTime.Now,
+                Deleted = false,
             };
 
             _roomRepository.Insert(room);

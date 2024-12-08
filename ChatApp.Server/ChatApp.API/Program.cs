@@ -41,10 +41,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-builder.Services.AddSignalR(options =>
-{
-    options.EnableDetailedErrors = true;
-});
+builder.Services.AddSignalR();
 
 // Add CORS services
 builder.Services.AddCors(options =>

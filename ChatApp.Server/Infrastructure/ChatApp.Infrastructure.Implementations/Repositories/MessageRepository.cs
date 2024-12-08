@@ -30,6 +30,7 @@ namespace ChatApp.Infrastructure.Implementations
             parameters.Add("SenderId", entity.SenderId);
             parameters.Add("Content", entity.Content);
             parameters.Add("SentAt", entity.SentAt);
+            parameters.Add("Deleted", entity.Deleted);
 
             return parameters;
         }

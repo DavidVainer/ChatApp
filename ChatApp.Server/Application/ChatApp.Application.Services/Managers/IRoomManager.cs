@@ -11,8 +11,14 @@ namespace ChatApp.Application.Services
         /// <summary>
         /// Retrieves all rooms.
         /// </summary>
-        /// <returns>Collection of existing rooms.</returns>
+        /// <returns>Collection of all existing rooms.</returns>
         IEnumerable<IRoom> GetAllRooms();
+
+        /// <summary>
+        /// Retrieves all active rooms.
+        /// </summary>
+        /// <returns>Collection of existing active rooms.</returns>
+        IEnumerable<IRoom> GetActiveRooms();
 
         /// <summary>
         /// Retrieves the details of the specified room.

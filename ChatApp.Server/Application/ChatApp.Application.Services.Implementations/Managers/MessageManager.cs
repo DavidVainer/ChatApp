@@ -33,6 +33,7 @@ namespace ChatApp.Application.Services.Implementations
                 SenderId = dto.SenderId,
                 Content = dto.Content,
                 SentAt = DateTime.Now,
+                Deleted = false,
             };
 
             _messageRepository.Insert(message);

@@ -8,7 +8,7 @@ import {
     Button, Alert
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { getAllRooms } from "../api/room";
+import { getActiveRooms } from "../api/room";
 
 const RoomsDashboard = () => {
     const [rooms, setRooms] = useState([]);
@@ -21,7 +21,7 @@ const RoomsDashboard = () => {
 
     const fetchRooms = async () => {
         try {
-            const data = await getAllRooms();
+            const data = await getActiveRooms();
             setRooms(data);
         } catch (err) {
             setError("Failed to fetch rooms.");

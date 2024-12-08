@@ -19,5 +19,10 @@
         /// The date when the user was created.
         /// </summary>
         DateTime? CreatedAt { get; }
+
+        /// <summary>
+        /// Indicates whether the user has been deleted.
+        /// </summary>
+        bool? Deleted { get; }
     }
 }
