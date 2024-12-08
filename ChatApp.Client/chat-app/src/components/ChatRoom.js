@@ -57,13 +57,22 @@ const ChatRoom = () => {
                     if (participantDetails.userId === userId) {
                         participantDetails.userDisplayName = "You";
                     }
-                    setRoomDetails((prev) => ({
-                        ...prev,
-                        participants: [
-                            ...(prev.participants || []),
-                            participantDetails
-                        ],
-                    }));
+
+                    setRoomDetails((prev) => {
+                        const participantExists = prev.participants?.some(participant => participant.userId === participantDetails.userId);
+
+                        if (participantExists) {
+                            return prev;
+                        }
+
+                        return {
+                            ...prev,
+                            participants: [
+                                ...(prev.participants || []),
+                                participantDetails
+                            ]
+                        };
+                    });
                 });
 
                 connect.on("UserLeft", (userId) => {
