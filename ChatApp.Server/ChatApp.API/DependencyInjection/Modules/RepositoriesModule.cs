@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Core;
 using ChatApp.Application.Services;
+using ChatApp.Common.Services;
 using ChatApp.Domain.Models;
 using ChatApp.Infrastructure.Implementations;
 using ChatApp.Infrastructure.Models;
@@ -108,6 +109,10 @@ namespace ChatApp.API.DependencyInjection.Modules
                 .InstancePerLifetimeScope();
 
             builder
+                .RegisterDecorator<IEntityRepository<Message>>((c, parameters, inner) =>
+                new CachedEntityRepositoryDecorator<Message>(inner, c.Resolve<ICache>(), c.Resolve<IGetByFilterCacheKeyGenerator>(), "Message"));
+
+            builder
                 .RegisterInstance(new RepositorySettings
                 {
                     TableName = "RoomParticipants",
@@ -133,6 +138,10 @@ namespace ChatApp.API.DependencyInjection.Modules
                 .InstancePerLifetimeScope();
 
             builder
+                .RegisterDecorator<IValueObjectRepository<RoomParticipant>>((c, parameters, inner) =>
+                new CachedValueObjectRepositoryDecorator<RoomParticipant>(inner, c.Resolve<ICache>(), c.Resolve<IGetByFilterCacheKeyGenerator>(), "RoomParticipant"));
+
+            builder
                 .RegisterInstance(new RepositorySettings
                 {
                     TableName = "MessageStatuses",
@@ -149,6 +158,10 @@ namespace ChatApp.API.DependencyInjection.Modules
                 .As<IValueObjectRepository<MessageStatus>>()
                 .WithParameter(ResolvedParameter.ForNamed<IRepositorySettings>(MESSAGE_STATUS_REPOSITORY_SETTINGS_NAME))
                 .InstancePerLifetimeScope();
+
+            builder
+                .RegisterDecorator<IValueObjectRepository<MessageStatus>>((c, parameters, inner) =>
+                new CachedValueObjectRepositoryDecorator<MessageStatus>(inner, c.Resolve<ICache>(), c.Resolve<IGetByFilterCacheKeyGenerator>(), "MessageStatus"));
         }
     }
 }

@@ -4,6 +4,7 @@ using ChatApp.API.DependencyInjection.Modules;
 using ChatApp.Application.Services;
 using ChatApp.Common.Services;
 using ChatApp.Infrastructure.Implementations;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace ChatApp.API.DependencyInjection
 {
@@ -29,29 +30,30 @@ namespace ChatApp.API.DependencyInjection
         /// <summary>
         /// Registers the Autofac modules in the container.
         /// </summary>
-        /// <param name="container">The IoC container.</param>
+        /// <param name="builder">The IoC container.</param>
         /// <param name="configuration">Configuration service.</param>
-        private static void RegisterModules(ContainerBuilder container, IConfiguration configuration)
+        private static void RegisterModules(ContainerBuilder builder, IConfiguration configuration)
         {
-            container
+            builder
                 .RegisterType<AutofacStrategyResolver>()
                 .As<IStrategyResolver>()
                 .InstancePerLifetimeScope();
 
-            container
+            builder
                 .RegisterType<JwtTokenService>()
                 .As<ITokenService>()
                 .InstancePerLifetimeScope();
 
-            container
+            builder
                 .RegisterType<UnitOfWork>()
                 .As<IUnitOfWork>()
                 .InstancePerLifetimeScope();
 
-            container
+            builder
                 .RegisterModule(new RepositoriesModule(configuration))
                 .RegisterModule(new ManagersModule(configuration))
-                .RegisterModule(new NotificationsModule(configuration));
+                .RegisterModule(new NotificationsModule(configuration))
+                .RegisterModule(new CacheModule(configuration));
         }
     }
 }
