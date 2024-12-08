@@ -1,6 +1,9 @@
-﻿using ChatApp.Domain.Models;
+﻿using ChatApp.Application.Services.Builders;
+using ChatApp.Domain.Models.Aggregates;
+using ChatApp.Domain.Models.Entities;
+using ChatApp.Domain.Models.ValueObjects;
 
-namespace ChatApp.Application.Services.Implementations
+namespace ChatApp.Application.Services.Implementations.Builders
 {
     /// <summary>
     /// Provides functionality to build room details aggregated object.
@@ -24,7 +27,8 @@ namespace ChatApp.Application.Services.Implementations
         /// <param name="roomId">Unique identifier of the room.</param>
         public void Initialize(Guid roomId)
         {
-            _roomDetails = new RoomDetails {
+            _roomDetails = new RoomDetails
+            {
                 RoomId = roomId,
                 Messages = new List<IMessage>(),
                 MessageAuthors = new List<IUserProfile>(),

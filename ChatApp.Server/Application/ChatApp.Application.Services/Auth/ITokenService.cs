@@ -1,6 +1,6 @@
-﻿using ChatApp.Domain.Models;
+﻿using ChatApp.Domain.Models.Entities;
 
-namespace ChatApp.Application.Services
+namespace ChatApp.Application.Services.Auth
 {
     /// <summary>
     /// Defines the contract for a service that generates authentication tokens.

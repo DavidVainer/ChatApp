@@ -1,6 +1,6 @@
-﻿using ChatApp.Domain.Models;
+﻿using ChatApp.Domain.Models.Aggregates;
 
-namespace ChatApp.Application.Services
+namespace ChatApp.Application.Services.Builders
 {
     /// <summary>
     /// Provides functionality to build room details aggregated object.

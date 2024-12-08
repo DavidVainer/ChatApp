@@ -1,7 +1,8 @@
-﻿using ChatApp.Application.Models;
-using ChatApp.Domain.Models;
+﻿using ChatApp.Application.Models.Dto;
+using ChatApp.Domain.Models.Aggregates;
+using ChatApp.Domain.Models.Entities;
 
-namespace ChatApp.Application.Services
+namespace ChatApp.Application.Services.Managers
 {
     /// <summary>
     /// Encapsulates room related operations.

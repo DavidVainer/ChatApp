@@ -1,4 +1,5 @@
-﻿using ChatApp.Domain.Models;
+﻿using ChatApp.Domain.Models.Aggregates;
+using ChatApp.Domain.Models.Entities;
 
 namespace ChatApp.Application.Services
 {

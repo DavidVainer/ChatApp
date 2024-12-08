@@ -1,7 +1,10 @@
-﻿using ChatApp.Application.Models;
-using ChatApp.Domain.Models;
+﻿using ChatApp.Application.Models.Dto;
+using ChatApp.Application.Services.Auth;
+using ChatApp.Application.Services.Managers;
+using ChatApp.Application.Services.Repositories;
+using ChatApp.Domain.Models.Entities;
 
-namespace ChatApp.Application.Services.Implementations
+namespace ChatApp.Application.Services.Implementations.Managers
 {
     /// <summary>
     /// Encapsulates user related operations.

@@ -1,6 +1,6 @@
-﻿using ChatApp.Application.Services;
+﻿using ChatApp.Application.Services.Auth;
 
-namespace ChatApp.Infrastructure.Implementations
+namespace ChatApp.Infrastructure.Implementations.Auth
 {
     /// <summary>
     /// Provides methods for hashing and verifying passwords using Bcrypt.

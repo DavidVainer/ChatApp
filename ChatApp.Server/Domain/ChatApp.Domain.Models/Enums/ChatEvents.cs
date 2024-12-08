@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Domain.Models
+﻿namespace ChatApp.Domain.Models.Enums
 {
     /// <summary>
     /// Represents the chat events that can be triggered.

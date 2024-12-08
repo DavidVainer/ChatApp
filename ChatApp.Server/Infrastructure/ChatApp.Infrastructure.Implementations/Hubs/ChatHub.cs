@@ -1,9 +1,11 @@
-﻿using ChatApp.Application.Models;
+﻿using ChatApp.Application.Models.Dto;
 using ChatApp.Application.Services;
-using ChatApp.Domain.Models;
+using ChatApp.Application.Services.Builders;
+using ChatApp.Application.Services.Managers;
+using ChatApp.Domain.Models.ValueObjects;
 using Microsoft.AspNetCore.SignalR;
 
-namespace ChatApp.Infrastructure.Implementations
+namespace ChatApp.Infrastructure.Implementations.Hubs
 {
     /// <summary>
     /// Hub for manging real-time chat communication.

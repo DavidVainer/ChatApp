@@ -1,7 +1,12 @@
-﻿using ChatApp.Application.Models;
-using ChatApp.Domain.Models;
+﻿using ChatApp.Application.Models.Dto;
+using ChatApp.Application.Services.Builders;
+using ChatApp.Application.Services.Managers;
+using ChatApp.Application.Services.Repositories;
+using ChatApp.Domain.Models.Aggregates;
+using ChatApp.Domain.Models.Entities;
+using ChatApp.Domain.Models.ValueObjects;
 
-namespace ChatApp.Application.Services.Implementations
+namespace ChatApp.Application.Services.Implementations.Managers
 {
     /// <summary>
     /// Encapsulates room related operations.
@@ -15,7 +20,7 @@ namespace ChatApp.Application.Services.Implementations
 
         public RoomManager(
             IEntityRepository<Room> roomRepository,
-            IValueObjectRepository<RoomParticipant> participantRepository, 
+            IValueObjectRepository<RoomParticipant> participantRepository,
             IEntityIdGenerator entityIdGenerator,
             IRoomDetailsBuilder roomDetailsBuilder)
         {

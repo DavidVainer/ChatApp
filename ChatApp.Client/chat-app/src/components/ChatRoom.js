@@ -131,7 +131,7 @@ const ChatRoom = () => {
         <Box display="flex" flexDirection="column" height="calc(100vh - 150px)">
             <Box display="flex" gap={3} alignItems="center" px={0}>
                 <Typography variant="h3" margin={1}>Room Name: {roomDetails.roomName}</Typography>
-                <Button variant={"contained"} color="secondary" bgColor={"#FFF"} onClick={handleLeaveRoom}>
+                <Button variant={"contained"} color="secondary" onClick={handleLeaveRoom}>
                     Leave Room
                 </Button>
             </Box>

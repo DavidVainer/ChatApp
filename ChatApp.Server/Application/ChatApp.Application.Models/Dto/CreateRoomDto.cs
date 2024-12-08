@@ -1,6 +1,6 @@
 ﻿using ChatApp.Domain.Models;
 
-namespace ChatApp.Application.Models
+namespace ChatApp.Application.Models.Dto
 {
     /// <summary>
     /// Data transfer object for creating a new room.

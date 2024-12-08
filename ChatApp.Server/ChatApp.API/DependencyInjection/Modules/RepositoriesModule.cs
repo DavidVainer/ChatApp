@@ -1,11 +1,15 @@
 ﻿using Autofac;
 using Autofac.Core;
-using ChatApp.Application.Services;
+using ChatApp.Application.Services.Repositories;
 using ChatApp.Common.Services;
-using ChatApp.Domain.Models;
+using ChatApp.Domain.Models.Entities;
+using ChatApp.Domain.Models.ValueObjects;
 using ChatApp.Infrastructure.Implementations;
-using ChatApp.Infrastructure.Models;
+using ChatApp.Infrastructure.Implementations.Repositories;
+using ChatApp.Infrastructure.Implementations.Repositories.Decorators;
+using ChatApp.Infrastructure.Models.RepositorySettings;
 using ChatApp.Infrastructure.Services;
+using ChatApp.Infrastructure.Services.Cache;
 using Microsoft.Data.SqlClient;
 using System.Data;
 

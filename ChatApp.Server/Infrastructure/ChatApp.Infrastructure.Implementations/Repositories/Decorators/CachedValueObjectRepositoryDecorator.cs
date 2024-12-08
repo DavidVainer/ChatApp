@@ -1,8 +1,8 @@
-﻿using ChatApp.Application.Services;
+﻿using ChatApp.Application.Services.Repositories;
 using ChatApp.Common.Services;
-using ChatApp.Infrastructure.Services;
+using ChatApp.Infrastructure.Services.Cache;
 
-namespace ChatApp.Infrastructure.Implementations
+namespace ChatApp.Infrastructure.Implementations.Repositories.Decorators
 {
     /// <summary>
     /// Decorator for caching value object repository methods.

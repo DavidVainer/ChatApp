@@ -1,5 +1,6 @@
-using ChatApp.Application.Models;
-using ChatApp.Application.Services;
+using ChatApp.Application.Models.Dto;
+using ChatApp.Application.Services.Auth;
+using ChatApp.Application.Services.Managers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChatApp.API.Controllers
@@ -31,11 +32,6 @@ namespace ChatApp.API.Controllers
             try
             {
                 var user = _loginManager.Login(dto);
-
-                if (user == null)
-                {
-                    return Unauthorized("Wrong email or password.");
-                }
 
                 var token = _tokenService.GenerateToken(user);
 

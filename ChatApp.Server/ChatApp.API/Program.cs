@@ -1,5 +1,5 @@
 using ChatApp.API.DependencyInjection;
-using ChatApp.Infrastructure.Implementations;
+using ChatApp.Infrastructure.Implementations.Hubs;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;

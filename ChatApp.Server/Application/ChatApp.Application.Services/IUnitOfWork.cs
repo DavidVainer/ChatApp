@@ -1,4 +1,6 @@
-﻿using ChatApp.Domain.Models;
+﻿using ChatApp.Application.Services.Repositories;
+using ChatApp.Domain.Models.Entities;
+using ChatApp.Domain.Models.ValueObjects;
 
 namespace ChatApp.Application.Services
 {

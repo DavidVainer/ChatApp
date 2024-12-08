@@ -1,7 +1,10 @@
-﻿using ChatApp.Application.Models;
-using ChatApp.Domain.Models;
+﻿using ChatApp.Application.Models.Dto;
+using ChatApp.Application.Services.Auth;
+using ChatApp.Application.Services.Managers;
+using ChatApp.Application.Services.Repositories;
+using ChatApp.Domain.Models.Entities;
 
-namespace ChatApp.Application.Services.Implementations
+namespace ChatApp.Application.Services.Implementations.Managers
 {
     /// <summary>
     /// Encapsulates login related operations.
@@ -24,7 +27,7 @@ namespace ChatApp.Application.Services.Implementations
         /// <returns>The logged in user.</returns>
         public IUser Login(LoginUserDto dto)
         {
-            var userFilter = new User { Email = dto.Email };
+            var userFilter = new User { Email = dto.Email, Deleted = false };
             var user = _userRepository.GetByFilter(userFilter).FirstOrDefault();
 
             if (user == null || !_passwordService.VerifyPassword(dto.Password, user.Password))

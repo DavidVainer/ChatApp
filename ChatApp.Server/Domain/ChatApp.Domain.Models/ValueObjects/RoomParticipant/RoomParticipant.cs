@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Domain.Models
+﻿namespace ChatApp.Domain.Models.ValueObjects
 {
     /// <summary>
     /// Represents a participant in a chat room, 

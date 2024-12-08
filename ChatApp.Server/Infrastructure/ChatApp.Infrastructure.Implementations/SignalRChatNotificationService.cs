@@ -1,5 +1,8 @@
 ﻿using ChatApp.Application.Services;
-using ChatApp.Domain.Models;
+using ChatApp.Domain.Models.Aggregates;
+using ChatApp.Domain.Models.Entities;
+using ChatApp.Domain.Models.Enums;
+using ChatApp.Infrastructure.Implementations.Hubs;
 using Microsoft.AspNetCore.SignalR;
 
 namespace ChatApp.Infrastructure.Implementations

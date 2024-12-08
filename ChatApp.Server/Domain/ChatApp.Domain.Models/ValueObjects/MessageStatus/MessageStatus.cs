@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Domain.Models
+﻿namespace ChatApp.Domain.Models.ValueObjects
 {
     /// <summary>
     /// Represents indication whether a user have seen a message or not.

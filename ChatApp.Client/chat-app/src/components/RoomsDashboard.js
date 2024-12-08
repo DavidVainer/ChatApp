@@ -43,7 +43,7 @@ const RoomsDashboard = () => {
                     No rooms available at the moment.
                 </Typography>
             ) : (
-                <Box display={"flex"} gap={3} justifyContent={"space-between"} flexWrap={"wrap"}>
+                <Box display={"flex"} gap={3} justifyContent={"center"} flexWrap={"wrap"}>
                     {rooms.map((room) => (
                         <Card key={room.id} sx={{ width: "30%" }} elevation={3}>
                             <CardContent sx={{ display: "flex", justifyContent: "center" }}>
