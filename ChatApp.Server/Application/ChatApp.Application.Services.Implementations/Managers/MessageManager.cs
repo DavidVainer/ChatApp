@@ -8,11 +8,11 @@ namespace ChatApp.Application.Services.Implementations
     /// </summary>
     public class MessageManager : IMessageManager
     {
-        private readonly IRepository<Message> _messageRepository;
-        private readonly IRepository<MessageStatus> _messageStatusRepository;
+        private readonly IEntityRepository<Message> _messageRepository;
+        private readonly IValueObjectRepository<MessageStatus> _messageStatusRepository;
         private readonly IEntityIdGenerator _entityIdGenerator;
 
-        public MessageManager(IRepository<Message> messageRepository, IRepository<MessageStatus> messageStatusRepository, IEntityIdGenerator entityIdGenerator)
+        public MessageManager(IEntityRepository<Message> messageRepository, IValueObjectRepository<MessageStatus> messageStatusRepository, IEntityIdGenerator entityIdGenerator)
         {
             _messageRepository = messageRepository ?? throw new ArgumentNullException(nameof(messageRepository));
             _messageStatusRepository = messageStatusRepository ?? throw new ArgumentNullException(nameof(messageStatusRepository));

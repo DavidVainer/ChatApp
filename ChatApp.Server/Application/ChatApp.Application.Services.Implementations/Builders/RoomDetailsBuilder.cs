@@ -37,7 +37,7 @@ namespace ChatApp.Application.Services.Implementations
         /// </summary>
         public void SetRoomProperties()
         {
-            var room = _unitOfWork.Rooms.GetByFilter(new Room { Id = _roomDetails.RoomId }).FirstOrDefault();
+            var room = _unitOfWork.Rooms.GetById(_roomDetails.RoomId);
 
             _roomDetails.RoomName = room.Name;
         }
@@ -76,7 +76,7 @@ namespace ChatApp.Application.Services.Implementations
 
             foreach (var senderId in messageSenders)
             {
-                var user = _unitOfWork.Users.GetByFilter(new User { Id = senderId }).FirstOrDefault();
+                var user = _unitOfWork.Users.GetById((Guid)senderId);
 
                 messageAuthors.Add(new UserProfile
                 {

@@ -16,6 +16,11 @@
         string GetAllQuery { get; }
 
         /// <summary>
+        /// The query used to retrieve a record by its unique identifier.
+        /// </summary>
+        string GetByIdQuery { get; }
+
+        /// <summary>
         /// The query used to insert a new record into the table.
         /// </summary>
         string InsertQuery { get; }

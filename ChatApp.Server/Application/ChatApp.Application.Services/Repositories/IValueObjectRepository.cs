@@ -1,10 +1,10 @@
 ﻿namespace ChatApp.Application.Services
 {
     /// <summary>
-    /// Defines CRUD operations inside a data source.
+    /// Defines CRUD operations inside a data source for value objects.
     /// </summary>
     /// <typeparam name="T">The type of the value object.</typeparam>
-    public interface IRepository<T>
+    public interface IValueObjectRepository<T>
         where T : class
     {
         /// <summary>

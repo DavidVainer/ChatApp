@@ -35,7 +35,7 @@ namespace ChatApp.Application.Services.Implementations
 
             foreach (var participant in participants)
             {
-                var user = _unitOfWork.Users.GetByFilter(new User { Id = participant.UserId }).FirstOrDefault();
+                var user = _unitOfWork.Users.GetById((Guid)participant.UserId);
 
                 var details = new RoomParticipantDetails
                 {
