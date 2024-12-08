@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
 import LoginPage from "./components/LoginPage";
@@ -33,7 +33,8 @@ const checkJwtExpiry = () => {
 const App = () => {
     useEffect(() => {
         if (checkJwtExpiry()) {
-            alert("Your session has expired, please log in again.");
+            alert("You are logged out, Please log in again.");
+            window.location.reload();
         }
     }, []);
 
