@@ -113,8 +113,15 @@ namespace ChatApp.API.DependencyInjection.Modules
                     TableName = "RoomParticipants",
                     GetAllQuery = "SELECT * FROM RoomParticipants",
                     InsertQuery = @"
-                        INSERT INTO RoomParticipants (RoomId, UserId, JoinedAt)
-                        VALUES (@RoomId, @UserId, @JoinedAt)",
+                        IF NOT EXISTS (
+                            SELECT 1
+                            FROM RoomParticipants 
+                            WHERE RoomId = @RoomId AND UserId = @UserId
+                        )
+                        BEGIN
+                            INSERT INTO RoomParticipants (RoomId, UserId, JoinedAt)
+                            VALUES (@RoomId, @UserId, @JoinedAt)
+                        END",
                     DeleteQuery = "DELETE FROM RoomParticipants WHERE RoomId = @RoomId AND UserId = @UserId"
                 })
                 .Named<IRepositorySettings>(ROOM_PARTICIPANT_REPOSITORY_SETTINGS_NAME);

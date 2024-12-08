@@ -49,12 +49,12 @@ builder.Services.AddSignalR(options =>
 // Add CORS services
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
+    options.AddPolicy("AllowLocalhost3000", policy =>
     {
         policy.AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials()
-              .SetIsOriginAllowed(origin => true); // Allow any origin
+              .WithOrigins("http://localhost:3000");
     });
 });
 
@@ -85,10 +85,10 @@ if (app.Environment.IsDevelopment())
 }
 
 // Use CORS
-app.UseCors("AllowAll");
+app.UseCors("AllowLocalhost3000");
 
 // Map SignalR Hubs
-app.MapHub<ChatHub>("/chatHub").RequireCors("AllowAll");
+app.MapHub<ChatHub>("/chatHub").RequireCors("AllowLocalhost3000");
 
 
 app.UseHttpsRedirection();

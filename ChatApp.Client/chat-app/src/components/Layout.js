@@ -6,7 +6,7 @@ const Layout = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const showLogoutButton = location.pathname !== "/login";
+    const showLogoutButton = location.pathname === "/rooms";
 
     const handleLogout = () => {
         localStorage.removeItem("token");
