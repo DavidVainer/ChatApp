@@ -19,5 +19,10 @@
         /// The time when the room was created.
         /// </summary>
         public DateTime? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Indicates whether the room has been deleted.
+        /// </summary>
+        public bool? Deleted { get; set; }
     }
 }

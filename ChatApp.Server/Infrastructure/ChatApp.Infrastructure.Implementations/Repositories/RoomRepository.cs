@@ -28,6 +28,7 @@ namespace ChatApp.Infrastructure.Implementations
             parameters.Add("Id", entity.Id);
             parameters.Add("Name", entity.Name);
             parameters.Add("CreatedAt", entity.CreatedAt);
+            parameters.Add("Deleted", entity.Deleted);
 
             return parameters;
         }

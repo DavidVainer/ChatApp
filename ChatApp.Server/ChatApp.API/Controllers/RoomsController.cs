@@ -32,6 +32,17 @@ namespace ChatApp.API.Controllers
         }
 
         /// <summary>
+        /// Retrieves all active rooms.
+        /// </summary>
+        /// <returns>A collection of active rooms.</returns>
+        [HttpGet("active")]
+        public IActionResult GetActiveRooms()
+        {
+            var rooms = _roomManager.GetActiveRooms();
+            return Ok(rooms);
+        }
+
+        /// <summary>
         /// Retrieves room details.
         /// </summary>
         /// <returns>A collection of all rooms.</returns>

@@ -30,6 +30,7 @@ namespace ChatApp.Infrastructure.Implementations
             parameters.Add("Password", entity.Password);
             parameters.Add("DisplayName", entity.DisplayName);
             parameters.Add("CreatedAt", entity.CreatedAt);
+            parameters.Add("Deleted", entity.Deleted);
 
             return parameters;
         }
