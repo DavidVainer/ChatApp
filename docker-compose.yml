@@ -22,14 +22,9 @@ services:
     environment:
       ConnectionStrings__SqlConnection: "Server=database,1433;Database=ChatApp;User Id=sa;Password=P@ssw0rd;TrustServerCertificate=True;"
       ASPNETCORE_HTTP_PORTS: 8080
-      ASPNETCORE_HTTPS_PORTS: 8081
       ASPNETCORE_ENVIRONMENT: Development
     ports:
       - "8080:8080"
-      - "8081:8081"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
     networks:
       - app-network
     depends_on:
