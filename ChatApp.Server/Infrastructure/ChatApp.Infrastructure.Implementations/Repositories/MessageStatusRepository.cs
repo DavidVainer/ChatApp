@@ -9,7 +9,7 @@ namespace ChatApp.Infrastructure.Implementations
     /// <summary>
     /// Base repository implementation for managing message status operations using Dapper.
     /// </summary>
-    public class MessageStatusRepository : BaseRepository<MessageStatus>
+    public class MessageStatusRepository : BaseValueObjectRepository<MessageStatus>
     {
         public MessageStatusRepository(IDbConnection dbConnection, IRepositorySettings settings, IFilterQueryBuilder filterQueryBuilder)
             : base(dbConnection, settings, filterQueryBuilder)

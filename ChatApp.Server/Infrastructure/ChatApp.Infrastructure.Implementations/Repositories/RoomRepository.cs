@@ -9,7 +9,7 @@ namespace ChatApp.Infrastructure.Implementations
     /// <summary>
     /// Base repository implementation for managing room operations using Dapper.
     /// </summary>
-    public class RoomRepository : BaseRepository<Room>
+    public class RoomRepository : BaseEntityRepository<Room>
     {
         public RoomRepository(IDbConnection dbConnection, IRepositorySettings settings, IFilterQueryBuilder filterQueryBuilder)
             : base(dbConnection, settings, filterQueryBuilder)

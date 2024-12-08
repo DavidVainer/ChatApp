@@ -8,14 +8,14 @@ namespace ChatApp.Application.Services.Implementations
     /// </summary>
     public class RoomManager : IRoomManager
     {
-        private readonly IRepository<Room> _roomRepository;
-        private readonly IRepository<RoomParticipant> _participantRepository;
+        private readonly IEntityRepository<Room> _roomRepository;
+        private readonly IValueObjectRepository<RoomParticipant> _participantRepository;
         private readonly IEntityIdGenerator _entityIdGenerator;
         private readonly IRoomDetailsBuilder _roomDetailsBuilder;
 
         public RoomManager(
-            IRepository<Room> roomRepository,
-            IRepository<RoomParticipant> participantRepository, 
+            IEntityRepository<Room> roomRepository,
+            IValueObjectRepository<RoomParticipant> participantRepository, 
             IEntityIdGenerator entityIdGenerator,
             IRoomDetailsBuilder roomDetailsBuilder)
         {
@@ -110,8 +110,7 @@ namespace ChatApp.Application.Services.Implementations
         /// <param name="roomId">The unique identifier of the room to be deleted.</param>
         public void DeleteRoom(Guid roomId)
         {
-            var roomFilter = new Room { Id = roomId };
-            var room = _roomRepository.GetByFilter(roomFilter).FirstOrDefault();
+            var room = _roomRepository.GetById(roomId);
 
             _roomRepository.Delete(room);
         }

@@ -55,6 +55,7 @@ namespace ChatApp.API.DependencyInjection.Modules
                 {
                     TableName = "Users",
                     GetAllQuery = "SELECT * FROM Users",
+                    GetByIdQuery = "SELECT * FROM Users WHERE Id = @Id",
                     InsertQuery = @"
                         INSERT INTO Users (Id, Email, Password, DisplayName, CreatedAt)
                         VALUES (@Id, @Email, @Password, @DisplayName, @CreatedAt)",
@@ -64,7 +65,7 @@ namespace ChatApp.API.DependencyInjection.Modules
 
             builder
                 .RegisterType<UserRepository>()
-                .As<IRepository<User>>()
+                .As<IEntityRepository<User>>()
                 .WithParameter(ResolvedParameter.ForNamed<IRepositorySettings>(USER_REPOSITORY_SETTINGS_NAME))
                 .InstancePerLifetimeScope();
 
@@ -73,6 +74,7 @@ namespace ChatApp.API.DependencyInjection.Modules
                 {
                     TableName = "Rooms",
                     GetAllQuery = "SELECT * FROM Rooms",
+                    GetByIdQuery = "SELECT * FROM Rooms WHERE Id = @Id",
                     InsertQuery = @"
                         INSERT INTO Rooms (Id, Name, CreatedAt)
                         VALUES (@Id, @Name, @CreatedAt)",
@@ -82,7 +84,7 @@ namespace ChatApp.API.DependencyInjection.Modules
 
             builder
                 .RegisterType<RoomRepository>()
-                .As<IRepository<Room>>()
+                .As<IEntityRepository<Room>>()
                 .WithParameter(ResolvedParameter.ForNamed<IRepositorySettings>(ROOM_REPOSITORY_SETTINGS_NAME))
                 .InstancePerLifetimeScope();
 
@@ -91,6 +93,7 @@ namespace ChatApp.API.DependencyInjection.Modules
                 {
                     TableName = "Messages",
                     GetAllQuery = "SELECT * FROM Messages",
+                    GetByIdQuery = "SELECT * FROM Messages WHERE Id = @Id",
                     InsertQuery = @"
                         INSERT INTO Messages (Id, RoomId, SenderId, Content, SentAt)
                         VALUES (@Id, @RoomId, @SenderId, @Content, @SentAt)",
@@ -100,7 +103,7 @@ namespace ChatApp.API.DependencyInjection.Modules
 
             builder
                 .RegisterType<MessageRepository>()
-                .As<IRepository<Message>>()
+                .As<IEntityRepository<Message>>()
                 .WithParameter(ResolvedParameter.ForNamed<IRepositorySettings>(MESSAGE_REPOSITORY_SETTINGS_NAME))
                 .InstancePerLifetimeScope();
 
@@ -118,7 +121,7 @@ namespace ChatApp.API.DependencyInjection.Modules
 
             builder
                 .RegisterType<RoomParticipantRepository>()
-                .As<IRepository<RoomParticipant>>()
+                .As<IValueObjectRepository<RoomParticipant>>()
                 .WithParameter(ResolvedParameter.ForNamed<IRepositorySettings>(ROOM_PARTICIPANT_REPOSITORY_SETTINGS_NAME))
                 .InstancePerLifetimeScope();
 
@@ -136,7 +139,7 @@ namespace ChatApp.API.DependencyInjection.Modules
 
             builder
                 .RegisterType<MessageStatusRepository>()
-                .As<IRepository<MessageStatus>>()
+                .As<IValueObjectRepository<MessageStatus>>()
                 .WithParameter(ResolvedParameter.ForNamed<IRepositorySettings>(MESSAGE_STATUS_REPOSITORY_SETTINGS_NAME))
                 .InstancePerLifetimeScope();
         }

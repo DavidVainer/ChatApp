@@ -9,7 +9,7 @@ namespace ChatApp.Infrastructure.Implementations
     /// <summary>
     /// Base repository implementation for managing message operations using Dapper.
     /// </summary>
-    public class MessageRepository : BaseRepository<Message>
+    public class MessageRepository : BaseEntityRepository<Message>
     {
         public MessageRepository(IDbConnection dbConnection, IRepositorySettings settings, IFilterQueryBuilder filterQueryBuilder)
             : base(dbConnection, settings, filterQueryBuilder)

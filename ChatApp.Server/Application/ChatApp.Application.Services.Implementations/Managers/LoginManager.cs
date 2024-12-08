@@ -8,10 +8,10 @@ namespace ChatApp.Application.Services.Implementations
     /// </summary>
     public class LoginManager : ILoginManager
     {
-        private readonly IRepository<User> _userRepository;
+        private readonly IEntityRepository<User> _userRepository;
         private readonly IPasswordService _passwordService;
 
-        public LoginManager(IRepository<User> userRepository, IPasswordService passwordService)
+        public LoginManager(IEntityRepository<User> userRepository, IPasswordService passwordService)
         {
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _passwordService = passwordService ?? throw new ArgumentNullException(nameof(passwordService));

@@ -7,17 +7,17 @@ using System.Data;
 namespace ChatApp.Infrastructure.Implementations
 {
     /// <summary>
-    /// Base repository implementation for managing CRUD operations using Dapper.
+    /// Base repository implementation for managing CRUD operations using Dapper for value objects.
     /// </summary>
     /// <typeparam name="T">The value object type.</typeparam>
-    public abstract class BaseRepository<T> : IRepository<T>
+    public abstract class BaseValueObjectRepository<T> : IValueObjectRepository<T>
         where T : class
     {
         protected readonly IDbConnection _dbConnection;
         protected readonly IRepositorySettings _settings;
         protected readonly IFilterQueryBuilder _filterQueryBuilder;
 
-        public BaseRepository(IDbConnection dbConnection, IRepositorySettings settings, IFilterQueryBuilder filterQueryBuilder)
+        public BaseValueObjectRepository(IDbConnection dbConnection, IRepositorySettings settings, IFilterQueryBuilder filterQueryBuilder)
         {
             _dbConnection = dbConnection ?? throw new ArgumentNullException(nameof(dbConnection));
             _settings = settings ?? throw new ArgumentNullException(nameof(settings));

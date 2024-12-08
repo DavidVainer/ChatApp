@@ -9,11 +9,11 @@ namespace ChatApp.Infrastructure.Implementations
     public class UnitOfWork : IUnitOfWork
     {
         public UnitOfWork(
-            IRepository<Room> roomsRepository,
-            IRepository<User> usersRepository,
-            IRepository<RoomParticipant> participantsRepository,
-            IRepository<Message> messagesRepository,
-            IRepository<MessageStatus> messageStatusesRepository)
+            IEntityRepository<Room> roomsRepository,
+            IEntityRepository<User> usersRepository,
+            IEntityRepository<Message> messagesRepository,
+            IValueObjectRepository<RoomParticipant> participantsRepository,
+            IValueObjectRepository<MessageStatus> messageStatusesRepository)
         {
             Rooms = roomsRepository ?? throw new ArgumentNullException(nameof(roomsRepository));
             Users = usersRepository ?? throw new ArgumentNullException(nameof(usersRepository));
@@ -25,26 +25,26 @@ namespace ChatApp.Infrastructure.Implementations
         /// <summary>
         /// Provides access to the repository for managing chat rooms.
         /// </summary>
-        public IRepository<Room> Rooms { get; set; }
+        public IEntityRepository<Room> Rooms { get; set; }
 
         /// <summary>
         /// Provides access to the repository for managing user data.
         /// </summary>
-        public IRepository<User> Users { get; set; }
-
-        /// <summary>
-        /// Provides access to the repository for managing participants in chat rooms.
-        /// </summary>
-        public IRepository<RoomParticipant> Participants { get; set; }
+        public IEntityRepository<User> Users { get; set; }
 
         /// <summary>
         /// Provides access to the repository for managing chat messages.
         /// </summary>
-        public IRepository<Message> Messages { get; set; }
+        public IEntityRepository<Message> Messages { get; set; }
+
+        /// <summary>
+        /// Provides access to the repository for managing participants in chat rooms.
+        /// </summary>
+        public IValueObjectRepository<RoomParticipant> Participants { get; set; }
 
         /// <summary>
         /// Provides access to the repository for managing message statuses;
         /// </summary>
-        public IRepository<MessageStatus> MessageStatuses { get; set; }
+        public IValueObjectRepository<MessageStatus> MessageStatuses { get; set; }
     }
 }

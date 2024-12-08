@@ -9,7 +9,7 @@ namespace ChatApp.Infrastructure.Implementations
     /// <summary>
     /// Base repository implementation for managing user operations using Dapper.
     /// </summary>
-    public class UserRepository : BaseRepository<User>
+    public class UserRepository : BaseEntityRepository<User>
     {
         public UserRepository(IDbConnection dbConnection, IRepositorySettings settings, IFilterQueryBuilder filterQueryBuilder)
             : base(dbConnection, settings, filterQueryBuilder)
