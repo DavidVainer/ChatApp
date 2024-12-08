@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Infrastructure.Services
+﻿namespace ChatApp.Infrastructure.Services.Cache
 {
     /// <summary>
     /// Generates a unique cache key for filtered records. 

@@ -2,9 +2,9 @@
 using Autofac.Extensions.DependencyInjection;
 using ChatApp.API.DependencyInjection.Modules;
 using ChatApp.Application.Services;
-using ChatApp.Common.Services;
+using ChatApp.Application.Services.Auth;
 using ChatApp.Infrastructure.Implementations;
-using Microsoft.Extensions.Caching.Memory;
+using ChatApp.Infrastructure.Implementations.Auth;
 
 namespace ChatApp.API.DependencyInjection
 {
@@ -34,11 +34,6 @@ namespace ChatApp.API.DependencyInjection
         /// <param name="configuration">Configuration service.</param>
         private static void RegisterModules(ContainerBuilder builder, IConfiguration configuration)
         {
-            builder
-                .RegisterType<AutofacStrategyResolver>()
-                .As<IStrategyResolver>()
-                .InstancePerLifetimeScope();
-
             builder
                 .RegisterType<JwtTokenService>()
                 .As<ITokenService>()

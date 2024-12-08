@@ -1,7 +1,7 @@
-﻿using ChatApp.Infrastructure.Services;
+﻿using ChatApp.Infrastructure.Services.Cache;
 using System.Text.Json;
 
-namespace ChatApp.Infrastructure.Implementations
+namespace ChatApp.Infrastructure.Implementations.Cache
 {
     /// <summary>
     /// Generates a unique cache key for filtered records. 

@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Domain.Models
+﻿namespace ChatApp.Domain.Models.Entities
 {
     /// <summary>
     /// Represents a message sent within a chat room.

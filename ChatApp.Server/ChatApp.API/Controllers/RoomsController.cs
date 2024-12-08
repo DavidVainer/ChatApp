@@ -1,5 +1,5 @@
-using ChatApp.Application.Models;
-using ChatApp.Application.Services;
+using ChatApp.Application.Models.Dto;
+using ChatApp.Application.Services.Managers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,9 +1,9 @@
-﻿namespace ChatApp.Domain.Models
+﻿namespace ChatApp.Domain.Models.Entities
 {
     /// <summary>
     /// Represents a chat room.
     /// </summary>
-    public class Room: IRoom
+    public class Room : IRoom
     {
         /// <summary>
         /// The room's unique identifier.

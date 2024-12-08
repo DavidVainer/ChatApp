@@ -1,9 +1,7 @@
 ﻿using Autofac;
-using ChatApp.Application.Services;
-using ChatApp.Application.Services.Implementations;
 using ChatApp.Common.Services;
-using ChatApp.Infrastructure.Implementations;
-using ChatApp.Infrastructure.Services;
+using ChatApp.Infrastructure.Implementations.Cache;
+using ChatApp.Infrastructure.Services.Cache;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace ChatApp.API.DependencyInjection.Modules

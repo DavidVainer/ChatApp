@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Infrastructure.Models
+﻿namespace ChatApp.Infrastructure.Models.RepositorySettings
 {
     /// <summary>
     /// Represents the settings and configurations to be used in a repository.

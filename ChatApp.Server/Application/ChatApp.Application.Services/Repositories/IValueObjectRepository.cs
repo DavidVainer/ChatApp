@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Application.Services
+﻿namespace ChatApp.Application.Services.Repositories
 {
     /// <summary>
     /// Defines CRUD operations inside a data source for value objects.

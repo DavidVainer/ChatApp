@@ -1,5 +1,4 @@
-﻿
-namespace ChatApp.Domain.Models
+﻿namespace ChatApp.Domain.Models.Entities
 {
     /// <summary>
     /// Defines user properties relevant to the chat system.

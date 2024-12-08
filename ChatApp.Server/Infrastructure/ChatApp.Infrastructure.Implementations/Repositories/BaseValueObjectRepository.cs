@@ -1,10 +1,10 @@
-﻿using ChatApp.Application.Services;
-using ChatApp.Infrastructure.Models;
+﻿using ChatApp.Application.Services.Repositories;
+using ChatApp.Infrastructure.Models.RepositorySettings;
 using ChatApp.Infrastructure.Services;
 using Dapper;
 using System.Data;
 
-namespace ChatApp.Infrastructure.Implementations
+namespace ChatApp.Infrastructure.Implementations.Repositories
 {
     /// <summary>
     /// Base repository implementation for managing CRUD operations using Dapper for value objects.

@@ -1,7 +1,7 @@
 ﻿using ChatApp.Common.Services;
 using Microsoft.Extensions.Caching.Memory;
 
-namespace ChatApp.Infrastructure.Implementations
+namespace ChatApp.Infrastructure.Implementations.Cache
 {
     /// <summary>
     /// Memory caching operations for managing data in a cache.

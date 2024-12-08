@@ -1,4 +1,6 @@
-﻿namespace ChatApp.Domain.Models
+﻿using ChatApp.Domain.Models.Entities;
+
+namespace ChatApp.Domain.Models.Aggregates
 {
     /// <summary>
     /// Aggregate object containing full room details.

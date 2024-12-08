@@ -1,12 +1,12 @@
-﻿using ChatApp.Application.Services;
-using ChatApp.Domain.Models;
+﻿using ChatApp.Application.Services.Auth;
+using ChatApp.Domain.Models.Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace ChatApp.Infrastructure.Implementations
+namespace ChatApp.Infrastructure.Implementations.Auth
 {
     /// <summary>
     /// Defines the contract for a service that generates authentication tokens.

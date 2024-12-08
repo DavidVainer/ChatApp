@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Application.Models
+﻿namespace ChatApp.Application.Models.Dto
 {
     /// <summary>
     /// Data transfer object for marking a message status as seen.

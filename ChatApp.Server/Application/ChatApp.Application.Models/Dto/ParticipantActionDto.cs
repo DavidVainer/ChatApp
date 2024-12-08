@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Application.Models
+﻿namespace ChatApp.Application.Models.Dto
 {
     /// <summary>
     /// Data Transfer Object for room participant actions.

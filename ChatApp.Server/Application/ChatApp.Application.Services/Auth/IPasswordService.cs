@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Application.Services
+﻿namespace ChatApp.Application.Services.Auth
 {
     /// <summary>
     /// Provides methods for hashing and verifying passwords.

@@ -1,7 +1,12 @@
 ﻿using Autofac;
 using ChatApp.Application.Services;
-using ChatApp.Application.Services.Implementations;
+using ChatApp.Application.Services.Auth;
+using ChatApp.Application.Services.Builders;
+using ChatApp.Application.Services.Implementations.Builders;
+using ChatApp.Application.Services.Implementations.Managers;
+using ChatApp.Application.Services.Managers;
 using ChatApp.Infrastructure.Implementations;
+using ChatApp.Infrastructure.Implementations.Auth;
 
 namespace ChatApp.API.DependencyInjection.Modules
 {
