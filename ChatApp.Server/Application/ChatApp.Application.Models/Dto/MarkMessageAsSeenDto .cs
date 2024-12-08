@@ -11,6 +11,11 @@
         public Guid MessageId { get; set; }
 
         /// <summary>
+        /// The unique identifier of the room where the message is sent.
+        /// </summary>
+        public Guid RoomId { get; set; }
+
+        /// <summary>
         /// The unique identifier of the user who seen the message.
         /// </summary>
         public Guid UserId { get; set; }

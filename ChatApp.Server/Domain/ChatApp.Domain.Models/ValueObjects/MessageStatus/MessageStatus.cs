@@ -11,6 +11,11 @@
         public Guid? MessageId { get; set; }
 
         /// <summary>
+        /// The identifier of the associated room.
+        /// </summary>
+        public Guid? RoomId { get; set; }
+
+        /// <summary>
         /// The identifier of the associated user.
         /// </summary>
         public Guid? UserId { get; set; }

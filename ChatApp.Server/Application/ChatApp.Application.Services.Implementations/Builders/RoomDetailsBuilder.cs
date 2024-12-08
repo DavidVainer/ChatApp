@@ -7,25 +7,14 @@ namespace ChatApp.Application.Services.Implementations
     /// </summary>
     public class RoomDetailsBuilder : IRoomDetailsBuilder
     {
-        private readonly IRepository<Room> _roomRepository;
-        private readonly IRepository<Message> _messageRepository;
-        private readonly IRepository<User> _userRepository;
-        private readonly IRepository<MessageStatus> _messageStatusRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IRoomParticipantDetailsBuilder _roomParticipantsBuilder;
 
         private IRoomDetails? _roomDetails;
 
-        public RoomDetailsBuilder(
-            IRepository<Room> roomRepository,
-            IRepository<Message> messageRepository,
-            IRepository<User> userRepository,
-            IRepository<MessageStatus> messageStatusRepository,
-            IRoomParticipantDetailsBuilder roomParticipantsBuilder)
+        public RoomDetailsBuilder(IUnitOfWork unitOfWork, IRoomParticipantDetailsBuilder roomParticipantsBuilder)
         {
-            _roomRepository = roomRepository ?? throw new ArgumentNullException(nameof(roomRepository));
-            _messageRepository = messageRepository ?? throw new ArgumentNullException(nameof(messageRepository));
-            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
-            _messageStatusRepository = messageStatusRepository ?? throw new ArgumentNullException(nameof(messageStatusRepository));
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _roomParticipantsBuilder = roomParticipantsBuilder ?? throw new ArgumentNullException(nameof(roomParticipantsBuilder));
         }
 
@@ -35,7 +24,12 @@ namespace ChatApp.Application.Services.Implementations
         /// <param name="roomId">Unique identifier of the room.</param>
         public void Initialize(Guid roomId)
         {
-            _roomDetails = new RoomDetails { RoomId = roomId };
+            _roomDetails = new RoomDetails {
+                RoomId = roomId,
+                Messages = new List<IMessage>(),
+                MessageAuthors = new List<IUserProfile>(),
+                Participants = new List<IRoomParticipantDetails>(),
+            };
         }
 
         /// <summary>
@@ -43,13 +37,7 @@ namespace ChatApp.Application.Services.Implementations
         /// </summary>
         public void SetRoomProperties()
         {
-            var roomFilter = new Room { Id = _roomDetails.RoomId };
-            var room = _roomRepository.GetByFilter(roomFilter).FirstOrDefault();
-
-            if (room == null)
-            {
-                throw new InvalidOperationException("Room not found.");
-            }
+            var room = _unitOfWork.Rooms.GetByFilter(new Room { Id = _roomDetails.RoomId }).FirstOrDefault();
 
             _roomDetails.RoomName = room.Name;
         }
@@ -59,15 +47,20 @@ namespace ChatApp.Application.Services.Implementations
         /// </summary>
         public void SetMessages()
         {
-            var messagesFilter = new Message { RoomId = _roomDetails.RoomId };
-            var messages = _messageRepository.GetByFilter(messagesFilter);
-
+            var messages = _unitOfWork.Messages.GetByFilter(new Message { RoomId = _roomDetails.RoomId });
+            var messageStatuses = _unitOfWork.MessageStatuses.GetByFilter(new MessageStatus { RoomId = _roomDetails.RoomId });
 
             foreach (var message in messages)
             {
-                var seenBy = _messageStatusRepository.GetByFilter(new MessageStatus { MessageId = (Guid)message.Id }).Select(x => (Guid)x.UserId);
+                message.SeenBy = new List<Guid>();
 
-                message.SeenBy = seenBy;
+                var seeners = messageStatuses
+                    .Where(s => s.MessageId == message.Id)
+                    .Select(s => (Guid)s.UserId)
+                    .Distinct()
+                    .ToList();
+
+                message.SeenBy = seeners;
             }
 
             _roomDetails.Messages = messages;
@@ -78,18 +71,18 @@ namespace ChatApp.Application.Services.Implementations
         /// </summary>
         public void SetMessageAuthors()
         {
-            var messageAuthorsIds = _roomDetails.Messages.Select(m => m.SenderId).Distinct().ToList();
-            var messageAuthors = new List<User>();
+            var messageSenders = _roomDetails.Messages.Select(m => m.SenderId).Distinct().ToList();
+            var messageAuthors = new List<IUserProfile>();
 
-            foreach (var authorId in messageAuthorsIds)
+            foreach (var senderId in messageSenders)
             {
-                var userFilter = new User { Id = authorId };
-                var user = _userRepository.GetByFilter(userFilter).FirstOrDefault();
+                var user = _unitOfWork.Users.GetByFilter(new User { Id = senderId }).FirstOrDefault();
 
-                if (user != null)
+                messageAuthors.Add(new UserProfile
                 {
-                    messageAuthors.Add(user);
-                }
+                    Id = user.Id,
+                    DisplayName = user.DisplayName,
+                });
             }
 
             _roomDetails.MessageAuthors = messageAuthors;
@@ -101,7 +94,7 @@ namespace ChatApp.Application.Services.Implementations
         public void SetParticipants()
         {
             _roomParticipantsBuilder.Initialize(_roomDetails.RoomId);
-            _roomParticipantsBuilder.SetParticipantDetails(new RoomParticipant {  RoomId = _roomDetails.RoomId });
+            _roomParticipantsBuilder.SetParticipantDetails(new RoomParticipant { RoomId = _roomDetails.RoomId });
 
             var participants = _roomParticipantsBuilder.Build();
 

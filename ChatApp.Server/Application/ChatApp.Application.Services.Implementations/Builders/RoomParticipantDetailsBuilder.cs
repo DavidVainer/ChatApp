@@ -7,16 +7,13 @@ namespace ChatApp.Application.Services.Implementations
     /// </summary>
     public class RoomParticipantDetailsBuilder : IRoomParticipantDetailsBuilder
     {
-        private readonly IRepository<RoomParticipant> _participantRepository;
-        private readonly IRepository<User> _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
         private IList<IRoomParticipantDetails> _participantDetails;
 
-        public RoomParticipantDetailsBuilder(IRepository<RoomParticipant> participantRepository, IRepository<User> userRepository)
+        public RoomParticipantDetailsBuilder(IUnitOfWork unitOfWork)
         {
-            _participantRepository = participantRepository ?? throw new ArgumentNullException(nameof(participantRepository));
-            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
-
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
         /// <summary>
@@ -34,17 +31,11 @@ namespace ChatApp.Application.Services.Implementations
         /// <param name="filter">Room participant filter.</param>
         public void SetParticipantDetails(RoomParticipant filter)
         {
-            var participants = _participantRepository.GetByFilter(filter);
+            var participants = _unitOfWork.Participants.GetByFilter(filter);
 
             foreach (var participant in participants)
             {
-                var userFilter = new User { Id = participant.UserId };
-                var user = _userRepository.GetByFilter(userFilter).FirstOrDefault();
-
-                if (user == null)
-                {
-                    throw new InvalidOperationException("User not found.");
-                }
+                var user = _unitOfWork.Users.GetByFilter(new User { Id = participant.UserId }).FirstOrDefault();
 
                 var details = new RoomParticipantDetails
                 {

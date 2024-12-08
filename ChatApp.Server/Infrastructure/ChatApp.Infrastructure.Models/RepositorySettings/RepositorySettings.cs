@@ -21,11 +21,6 @@
         public string InsertQuery { get; set; }
 
         /// <summary>
-        /// The query used to update an existing record in the table.
-        /// </summary>
-        public string UpdateQuery { get; set; }
-
-        /// <summary>
         /// The query used to delete a record from the table.
         /// </summary>
         public string DeleteQuery { get; set; }

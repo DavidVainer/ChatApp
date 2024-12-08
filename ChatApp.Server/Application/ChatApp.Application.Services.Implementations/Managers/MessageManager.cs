@@ -49,6 +49,7 @@ namespace ChatApp.Application.Services.Implementations
             var messageStatus = new MessageStatus
             {
                 MessageId = dto.MessageId,
+                RoomId = dto.RoomId,
                 UserId = dto.UserId,
                 SeenAt = DateTime.Now,
             };

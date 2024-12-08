@@ -11,6 +11,11 @@
         Guid? MessageId { get; }
 
         /// <summary>
+        /// The identifier of the associated room.
+        /// </summary>
+        Guid? RoomId { get; }
+
+        /// <summary>
         /// The identifier of the associated user.
         /// </summary>
         Guid? UserId { get; }

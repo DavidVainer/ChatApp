@@ -101,6 +101,7 @@ namespace ChatApp.Infrastructure.Implementations
             var markMessageAsSeenDto = new MarkMessageAsSeenDto
             {
                 MessageId = Guid.Parse(messageId),
+                RoomId = Guid.Parse(roomId),
                 UserId = Guid.Parse(userId)
             };
 
