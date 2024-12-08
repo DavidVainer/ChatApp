@@ -23,7 +23,7 @@
         /// <summary>
         /// Collection of users who have written messages in the room.
         /// </summary>
-        IEnumerable<IUser> MessageAuthors { get; set; }
+        IEnumerable<IUserProfile> MessageAuthors { get; set; }
 
         /// <summary>
         /// Collection of participants in the room.

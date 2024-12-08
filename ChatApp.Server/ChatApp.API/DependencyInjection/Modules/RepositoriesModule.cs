@@ -57,7 +57,7 @@ namespace ChatApp.API.DependencyInjection.Modules
                     GetAllQuery = "SELECT * FROM Users",
                     InsertQuery = @"
                         INSERT INTO Users (Id, Email, Password, DisplayName, CreatedAt)
-                        VALUES (@Id, @Email, @Password, @DisplayNAme, @CreatedAt)",
+                        VALUES (@Id, @Email, @Password, @DisplayName, @CreatedAt)",
                     DeleteQuery = "DELETE FROM Users WHERE Id = @Id"
                 })
                 .Named<IRepositorySettings>(USER_REPOSITORY_SETTINGS_NAME);
@@ -128,8 +128,8 @@ namespace ChatApp.API.DependencyInjection.Modules
                     TableName = "MessageStatuses",
                     GetAllQuery = "SELECT * FROM MessageStatuses",
                     InsertQuery = @"
-                        INSERT INTO MessageStatuses (MessageId, UserId, SeenAt)
-                        VALUES (@MessageId, @UserId, @SeenAt)",
+                        INSERT INTO MessageStatuses (MessageId, RoomId, UserId, SeenAt)
+                        VALUES (@MessageId, @RoomId, @UserId, @SeenAt)",
                     DeleteQuery = "DELETE FROM MessageStatuses WHERE MessageId = @MessageId AND UserId = @UserId"
                 })
                 .Named<IRepositorySettings>(MESSAGE_STATUS_REPOSITORY_SETTINGS_NAME);

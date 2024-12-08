@@ -4,8 +4,6 @@ import { jwtDecode } from "jwt-decode";
 
 import LoginPage from "./components/LoginPage";
 import PrivateRoute from "./routes/PrivateRoute";
-import UserManagement from "./components/UserManagement";
-import RoomManagement from "./components/RoomManagement";
 import RoomsDashboard from "./components/RoomsDashboard";
 import ChatRoom from "./components/ChatRoom";
 import Layout from "./components/Layout";
@@ -63,19 +61,6 @@ const App = () => {
                         </PrivateRoute>
                         }
                     />
-                    <Route
-                        path="/users-management"
-                        element={
-                        <PrivateRoute>
-                            <UserManagement />
-                        </PrivateRoute>
-                        }
-                    />
-                    <Route path="/rooms-management" element={
-                        <PrivateRoute>
-                            <RoomManagement />
-                        </PrivateRoute>
-                    }
                 />
                 </Route>
             </Routes>

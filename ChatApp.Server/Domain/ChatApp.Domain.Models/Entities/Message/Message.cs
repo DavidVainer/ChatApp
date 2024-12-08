@@ -33,6 +33,6 @@
         /// <summary>
         /// List of users identifiers who have seen this message.
         /// </summary>
-        public IEnumerable<Guid> SeenBy { get; set; }
+        public IList<Guid> SeenBy { get; set; }
     }
 }

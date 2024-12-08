@@ -26,6 +26,7 @@ namespace ChatApp.Infrastructure.Implementations
             var parameters = new DynamicParameters();
 
             parameters.Add("MessageId", item.MessageId);
+            parameters.Add("RoomId", item.RoomId);
             parameters.Add("UserId", item.UserId);
             parameters.Add("SeenAt", item.SeenAt);
 
@@ -42,6 +43,7 @@ namespace ChatApp.Infrastructure.Implementations
             var parameters = new DynamicParameters();
 
             parameters.Add("MessageId", item.MessageId);
+            parameters.Add("RoomId", item.RoomId);
             parameters.Add("UserId", item.UserId);
 
             return parameters;

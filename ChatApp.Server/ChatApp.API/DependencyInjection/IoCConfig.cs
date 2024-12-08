@@ -44,6 +44,11 @@ namespace ChatApp.API.DependencyInjection
                 .InstancePerLifetimeScope();
 
             container
+                .RegisterType<UnitOfWork>()
+                .As<IUnitOfWork>()
+                .InstancePerLifetimeScope();
+
+            container
                 .RegisterModule(new RepositoriesModule(configuration))
                 .RegisterModule(new ManagersModule(configuration))
                 .RegisterModule(new NotificationsModule(configuration));
