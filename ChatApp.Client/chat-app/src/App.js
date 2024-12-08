@@ -8,8 +8,6 @@ import RoomsDashboard from "./components/RoomsDashboard";
 import ChatRoom from "./components/ChatRoom";
 import Layout from "./components/Layout";
 
-import "./App.css";
-
 const checkJwtExpiry = () => {
     const token = localStorage.getItem("token");
 

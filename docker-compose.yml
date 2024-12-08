@@ -1,6 +1,8 @@
 services:
   database:
-    image: mcr.microsoft.com/mssql/server:2022-latest
+    build:
+      context: ./ChatApp.Server
+      dockerfile: ChatApp.API/Database/Dockerfile
     container_name: chatapp-database
     environment:
       SA_PASSWORD: "P@ssw0rd"
